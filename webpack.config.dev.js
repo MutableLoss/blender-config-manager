@@ -10,18 +10,14 @@ var execSync = require('child_process').execSync;
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var baseConfig = require('./webpack.config.base');
 var CheckNodeEnv = require('./scripts/check_node_env');
-var DashboardPlugin = require('webpack-dashboard/plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const port = process.env.PORT || 3000;
 const publicPath = `http://localhost:${port}/`;
 
 module.exports = merge.smart(baseConfig, {
-
   devtool: 'inline-source-map',
-
   target: 'electron-renderer',
-
   entry: [
     'index.js',
     'react-hot-loader/patch',
@@ -47,13 +43,7 @@ module.exports = merge.smart(baseConfig, {
           loader: 'babel-loader',
           options: {
             cacheDirectory: true,
-            presets: ['@babel/preset-env'],
-            plugins: [
-              '@babel/transform-runtime',
-              "@babel/transform-classes",
-              "@babel/proposal-class-properties",
-              "@babel/transform-regenerator"
-            ],
+            presets: ['babel-preset-env']
           }
         }
       },
@@ -141,7 +131,7 @@ module.exports = merge.smart(baseConfig, {
       template: 'app/app.html',
       appMountIds: ['app', 'portal'],
       devServer: 'http://localhost:3000',
-      title: 'Barista'
+      title: 'Blender Config Manager'
     }),
     new ExtractTextPlugin({
       filename: '[name].css'

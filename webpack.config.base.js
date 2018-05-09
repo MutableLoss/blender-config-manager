@@ -25,17 +25,12 @@ module.exports = {
     path: path.join(__dirname, 'build'),
     pathinfo: true,
     filename: 'bundle.js',
-    // https://github.com/webpack/webpack/issues/1114
     libraryTarget: 'commonjs2'
   },
-
   node: {
-    __dirname: false,
+    __dirname: true,
     __filename: false
   },
-  /**
-   * Determine the array of extensions that should be used to resolve modules.
-   */
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     modules: [
@@ -43,12 +38,10 @@ module.exports = {
       'node_modules',
     ],
   },
-
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
     }),
-    new DashboardPlugin(),
     new webpack.NamedModulesPlugin(),
   ],
 };
