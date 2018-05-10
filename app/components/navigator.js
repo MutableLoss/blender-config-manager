@@ -30,10 +30,13 @@ export default class Navigator extends Component {
       <div className="navigator-container">
         Navigator
         <div className="folder-list">
-          <ul>
+          <ul className="folders">
           {this.state.folders.length > 0 ? this.state.folders.map(folder => (
-            <li key={folder}>{folder}</li>
-          )) : <button onClick={() => this.showFolders()}>Load Folders</button> }
+            <li className="folder" key={folder}>
+              <div className="buttons"></div>
+              <div className="folder-name">{folder}</div>
+            </li>
+          )) : <button className="btn btn-info" onClick={() => this.showFolders()}>Load Folders</button> }
           </ul>
         </div>
       </div>
