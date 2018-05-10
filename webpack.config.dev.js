@@ -43,7 +43,7 @@ module.exports = merge.smart(baseConfig, {
           loader: 'babel-loader',
           options: {
             cacheDirectory: true,
-            presets: ['babel-preset-env']
+            presets: ['es2017', 'react', 'babel-preset-stage-2']
           }
         }
       },

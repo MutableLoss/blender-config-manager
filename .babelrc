@@ -1,11 +1,9 @@
 {
   "presets": [
-    "babel-preset-env",
-    "babel-preset-react",
-    "babel-preset-es2017",
-    "babel-preset-stage-2"
+    "es2017",
+    "react",
+    "stage-2"
   ],
   "plugins": [
-    "react-hot-loader/babel"
   ]
 }
