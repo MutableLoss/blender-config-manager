@@ -1,3 +1,5 @@
+import './style/bootstrap/css/bootstrap-theme.min.css'
+import './style/bootstrap/css/bootstrap.min.css'
 import './style/style.scss';
 
 import React, { Component } from 'react'
