@@ -4,6 +4,7 @@ var nodeConsole = require('console')
 var myConsole = new nodeConsole.Console(process.stdout, process.stderr);
 const { app, BrowserView, Menu, ipcMain, BrowserWindow, session, webContents, webFrame } = require('electron')
 const { setMainMenu } = require('./menu')
+require('./listeners/actions')
 let mainWindow
 const windows = []
 
@@ -16,8 +17,9 @@ function setIcon() {
 function createBrowserWindow(browserWindowOpts) {
   let win = new BrowserWindow(Object.assign({
     titleBarStyle: 'hidden',
-    width: 800,
-    height: 800,
+    frame: false,
+    width: 600,
+    height: 600,
     resizable: true,
     show: false
     }, browserWindowOpts))
