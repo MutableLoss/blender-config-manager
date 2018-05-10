@@ -36,21 +36,27 @@ ipcMain.on('show-folders', event => {
 ipcMain.on('remove-folder', (event, folder) => {
   fs.rmdir(folder, err => {
     if(err) throw err;
+    event.sender.send('remove-folder-response');
   })
 })
 
-ipcMain.on('rename-folder', (event, folder) => {
-  fs.rename
+ipcMain.on('backup-folder', (event, folder) => {
+  event.sender.send('backup-folder-response');
 })
 
-ipcMain.on('backup-folder', (event, folder) => {
-  
+ipcMain.on('disable-folder', (event, folder) => {
+  event.sender.send('disable-folder-response');
 })
 
 ipcMain.on('delete-folder', (event, folder) => {
-  
+  event.sender.send('delete-folder-response');
 })
 
 ipcMain.on('copy-scripts', (event, folder) => {
-  
+  event.sender.send('copy-scripts-response');
+})
+
+ipcMain.on('remove-scripts', (event, folder) => {
+  fs.rename
+  event.sender.send('remove-scripts-response');
 })
