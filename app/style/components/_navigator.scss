@@ -1,0 +1,7 @@
+.folder-list {
+  @include justify-content(column);
+  @include align-content(flex-end);
+  @include align-items(flex-end);
+  margin: 15px;
+  background-color: white;
+}

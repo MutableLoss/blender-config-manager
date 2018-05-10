@@ -1,0 +1,29 @@
+.app-container {
+  @include flexbox;
+  @include flex-direction(column);
+  @include justify-content(flex-start);
+  @include align-content(stretch);
+  @include align-items(stretch);
+
+  height: 600px;
+  background-color: #9696ef;
+
+  .app-inner {
+    @include flexbox;
+    @include flex-direction(row);
+    @include justify-content(flex-start);
+    @include align-content(stretch);
+    @include align-items(stretch);
+    height: 100%;
+    margin-top: 20px;
+  }
+}
+
+.action-container,
+.navigator-container {
+  @include flex(0, 0, 50%);
+  @include justify-content(flex-start);
+  @include align-content(stretch);
+  text-align: center;
+  height: 100%;
+}
