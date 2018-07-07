@@ -7,7 +7,7 @@ let blenderConfig;
 function checkPlatform() {  
   if(process.platform == 'darwin') {
     console.log('darwin')
-    blenderConfig = os.homedir() + '/Library/Application\ Support/Blender/'
+    blenderConfig = os.homedir() + '/Library/Application Support/Blender/'
   } else if(process.platform == 'win32') {
     console.log('win32')
     blenderConfig = os.homedir() + '/AppData/Local/Blender Foundation/blender'

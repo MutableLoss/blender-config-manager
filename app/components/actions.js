@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import Button from './visual/button'
 
 const Actions = ({selected, folders, copy, enable, disable, remove}) => (
@@ -22,9 +23,18 @@ const Actions = ({selected, folders, copy, enable, disable, remove}) => (
           }
           <Button title="remove the selected settings folder" name="Remove Folder" action={() => remove(selected)} />
         </Fragment>
-      : <div>Select Folder -></div>}
+      : <div>Select a Config Folder</div>}
     </div>
   </div>
 )
 
 export default Actions
+
+Actions.propTypes = {
+  selected: PropTypes.string.isRequired,
+  folders: PropTypes.array,
+  copy: PropTypes.func,
+  enable: PropTypes.func,
+  disable: PropTypes.func,
+  remove: PropTypes.func
+}
