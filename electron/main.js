@@ -19,7 +19,7 @@ function createBrowserWindow(browserWindowOpts) {
     titleBarStyle: 'hidden',
     frame: false,
     width: 600,
-    height: 600,
+    height: 500,
     resizable: true,
     show: false
     }, browserWindowOpts))
@@ -37,7 +37,7 @@ function createBrowserWindow(browserWindowOpts) {
     windows.splice(windows.indexOf(win), 1)
   });
 
-  BrowserWindow.addDevToolsExtension('/Users/dbrown/Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.2.1_0/')
+  BrowserWindow.addDevToolsExtension('/Users/dbrown/Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.2.3_0/')
   require('devtron').install()
 }
 
