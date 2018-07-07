@@ -1,19 +1,19 @@
 .app-container {
-  @include flexbox;
-  @include flex-direction(column);
-  @include justify-content(flex-start);
-  @include align-content(stretch);
-  @include align-items(stretch);
-
-  height: 600px;
-  background-color: #9696ef;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+  width: $app-width;
+  height: $app-height;
+  background-color: $app-background;
 
   .app-inner {
-    @include flexbox;
-    @include flex-direction(row);
-    @include justify-content(flex-start);
-    @include align-content(stretch);
-    @include align-items(stretch);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
     height: 100%;
     margin-top: 20px;
   }
@@ -21,9 +21,12 @@
 
 .action-container,
 .navigator-container {
-  @include flex(0, 0, 50%);
-  @include justify-content(flex-start);
-  @include align-content(stretch);
+  width: $app-width / 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
   text-align: center;
   height: 100%;
 }

@@ -2,12 +2,16 @@
 @import 'flexbox';
 @import 'components';
 
+@import url('https://fonts.googleapis.com/css?family=Audiowide|Quicksand');
+
 body {
   box-sizing: border-box;
-  max-width: 600px;
-  max-height: 600px;
+  width: $app-width;
+  height: $app-height;
   margin: 0;
   padding: 0;
+  font-family: 'Audiowide';
+  color: $system-offwhite;
 }
 
 .titlebar {
@@ -15,4 +19,6 @@ body {
   text-align: center;
   padding: 15px 0;
   width: 100%;
+  color: $title-color;
+  font-size: $font-base * 2;
 }

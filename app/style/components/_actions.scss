@@ -2,8 +2,16 @@
 
   .actions {
 
-    .action-button {
-      margin: 10px 0;
-    }
+  }
+}
+
+
+.action-button {
+  margin: 10px 0;
+
+  button {
+    width: 50%;
+    border-color: $button-border;
+    background: $button-back;
   }
 }

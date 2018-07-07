@@ -1,18 +1,17 @@
 .folder-list {
-  @include justify-content(column);
-  @include align-content(flex-end);
-  @include align-items(flex-end);
   margin: 15px;
-  background-color: white;
+  background-color: $folder-background;
 }
 
 .folder-list {
   border-radius: 5px;
-  border: 2px solid gray;
+  border: 2px solid lighten($folder-background, 10%);
+  height: 100%;
+  margin: 0 $padding-lg * 2 $padding * 3;
 
   .folders {
     list-style: none;
-    padding: 25px;
+    padding: $padding;
 
     .buttons {
       text-align: right;
@@ -21,5 +20,13 @@
     .folder {
       text-align: left;
     }
+  }
+}
+
+.folder-name {
+  margin: $padding-sm 0;
+
+  &.selected {
+    background: $selected-back;
   }
 }
