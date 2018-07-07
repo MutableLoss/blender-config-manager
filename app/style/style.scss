@@ -1,8 +1,12 @@
 @import 'vars';
-@import 'flexbox';
 @import 'components';
 
-@import url('https://fonts.googleapis.com/css?family=Audiowide|Quicksand');
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+
+@import '../../node_modules/vex-js/sass/vex';
+@import '../../node_modules/vex-js/sass/vex-theme-flat-attack';
+// @import '../../node_modules/vex-js/sass/vex-theme-default';
+// @import '../../node_modules/vex-js/sass/vex-theme-os';
 
 body {
   box-sizing: border-box;
