@@ -1,6 +1,7 @@
 const { ipcMain, dialog } = require('electron')
 const { exec } = require('child_process')
 const fs = require('fs')
+const fse = require('fs-extra')
 const os = require('os')
 let blenderConfig;
 
@@ -32,8 +33,11 @@ ipcMain.on('show-folders', event => {
   })
 })
 
-ipcMain.on('copy-settings', event => {
-
+ipcMain.on('copy-settings', (event, from, to) => {
+  fse.copy(`${blenderConfig}/${from}`, `${blenderConfig}/${to}`, err => {
+    if(err) throw error;
+    event.sender.send('copy-settings-response');
+  })
 })
 
 ipcMain.on('remove-folder', (event, folder) => {
