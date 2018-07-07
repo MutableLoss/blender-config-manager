@@ -73,6 +73,8 @@ export default class Navigator extends Component {
         if(value) {
           console.log('Copying: ' + this.state.selected + ' to ' + this.state.copySelect)
           ipcRender.send('copy-settings', this.state.selected, this.state.copySelect)
+        } else {
+          this.resetSelected()
         }
       }
     })
@@ -95,7 +97,7 @@ export default class Navigator extends Component {
           </div>
           <div className="action-container">
             {this.state.copy ? 
-              <FolderList folders={this.state.folders.filter(obj => obj !== this.state.selected)} select={this.selectCopy} selected={this.state.copySelect} />
+              <FolderList folders={this.state.folders.filter(obj => obj !== this.state.selected)} select={this.selectCopy} selected={this.state.copySelect} cancel={this.resetSelected} />
             :
               <Actions 
                 selected={this.state.selected}
