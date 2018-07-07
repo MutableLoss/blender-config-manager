@@ -9,7 +9,6 @@ export default class App extends Component {
       <div className="app-container">
         <div className="titlebar">Blender Config Manager</div>
         <div className="app-inner">
-          <Actions />
           <Navigator />
         </div>
       </div>
