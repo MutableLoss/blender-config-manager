@@ -28,9 +28,12 @@ ipcMain.on('show-folders', event => {
 
   fs.readdir(blenderConfig, (err, files) => {
     if(err) throw err;
-    
-    event.sender.send('show-folders-response', files);
+    event.sender.send('show-folders-response', files.filter(file => file !== '.DS_Store'));
   })
+})
+
+ipcMain.on('copy-settings', event => {
+
 })
 
 ipcMain.on('remove-folder', (event, folder) => {
@@ -40,23 +43,16 @@ ipcMain.on('remove-folder', (event, folder) => {
   })
 })
 
-ipcMain.on('backup-folder', (event, folder) => {
-  event.sender.send('backup-folder-response');
-})
-
 ipcMain.on('disable-folder', (event, folder) => {
-  event.sender.send('disable-folder-response');
+  fs.rename(`${blenderConfig}/${folder}`, `${blenderConfig}/${folder}-old`, (err) => {
+    if(err) throw err;
+    event.sender.send('disable-folder-response');
+  })
 })
 
-ipcMain.on('delete-folder', (event, folder) => {
-  event.sender.send('delete-folder-response');
-})
-
-ipcMain.on('copy-scripts', (event, folder) => {
-  event.sender.send('copy-scripts-response');
-})
-
-ipcMain.on('remove-scripts', (event, folder) => {
-  fs.rename
-  event.sender.send('remove-scripts-response');
+ipcMain.on('enable-folder', (event, folder) => {
+  fs.rename(`${blenderConfig}/${folder}`, `${blenderConfig}/${folder.replace(/.old/, '')}`, (err) => {
+    if(err) throw err;
+    event.sender.send('enable-folder-response');
+  })
 })
