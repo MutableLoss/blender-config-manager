@@ -30,6 +30,7 @@
     "css-loader": "0.28.11",
     "devtron": "1.4.0",
     "electron": "2.0.0",
+    "electron-builder": "20.19.2",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
     "file-loader": "1.1.11",
     "html-loader": "0.5.5",
@@ -75,11 +76,11 @@
       "contents": [
         {
           "x": 110,
-          "y": 150
+          "y": 200
         },
         {
-          "x": 240,
-          "y": 150,
+          "x": 540,
+          "y": 200,
           "type": "link",
           "path": "/Applications"
         }
@@ -92,7 +93,7 @@
     },
     "win": {
       "target": "NSIS",
-      "icon": "build/icon.ico"
+      "icon": "icons/win/icon.ico"
     }
   }
 }
