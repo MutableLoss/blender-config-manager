@@ -37,11 +37,10 @@ function createBrowserWindow(browserWindowOpts) {
   })
   setMainMenu(mainWindow)
   
-    
-  if(process.env.NODE_ENV === 'development') {
+  if(process.env.HOT) {
     win.openDevTools()
-    BrowserWindow.addDevToolsExtension('/Users/dbrown/Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.2.3_0/')
     require('devtron').install()
+    BrowserWindow.addDevToolsExtension('/Users/dbrown/Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.2.3_0/')
   }
   
   win.on('close', () => {

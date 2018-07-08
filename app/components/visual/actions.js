@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import Button from './visual/button'
+import Button from './button'
 
 const Actions = ({selected, folders, copy, enable, disable, remove}) => (
   <div className="actions">

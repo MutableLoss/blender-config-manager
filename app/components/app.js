@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
-import Actions from './actions'
-import Navigator from './navigator'
+import Inner from './inner'
 
 export default class App extends Component {
   render() {
@@ -9,7 +8,7 @@ export default class App extends Component {
       <div className="app-container">
         <div className="titlebar">Blender Config Manager</div>
         <div className="app-inner">
-          <Navigator />
+          <Inner />
         </div>
       </div>
     )
