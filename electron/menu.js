@@ -11,7 +11,7 @@ function setMainMenu(mainWindow) {
       label: isWindows ? 'File' : 'Blender Config Manager',
       submenu: [
         {
-          label: isWindows ? 'Exit' : `Quit Blender Config Manager`,
+          label: isWindows ? 'Exit' : 'Quit Blender Config Manager',
           accelerator: isWindows ? 'Alt+f4' : 'CmdOrCtrl+Q',
           click() {
             app.quit();
