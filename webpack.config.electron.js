@@ -6,7 +6,7 @@ const baseConfig = require('./webpack.config.base');
 
 module.exports = merge(baseConfig, {
   target: 'electron-main',
-  entry: './Electron/main',
+  entry: './electron/main',
 
   // 'main.js' in root
   output: {

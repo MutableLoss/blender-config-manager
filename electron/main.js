@@ -8,11 +8,6 @@ require('./listeners/actions')
 let mainWindow
 const windows = []
 
-function setIcon() {
-  if(process.platform === 'linux') {
-    options.icon = path.resolve(__dirname, '.', 'img', 'desktop-icon.png');
-  }
-}
 
 function createBrowserWindow(browserWindowOpts) {
   let win = new BrowserWindow(Object.assign({
@@ -21,8 +16,9 @@ function createBrowserWindow(browserWindowOpts) {
     width: 600,
     height: 500,
     resizable: true,
-    show: false
-    }, browserWindowOpts))
+    show: false,
+    icon: path.join(__dirname, 'icons/512x512.png')
+  }, browserWindowOpts))
 
   windows.push(win)
 

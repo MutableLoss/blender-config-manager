@@ -1,5 +1,6 @@
 const { app, Menu, ipcMain } = require('electron');
 const isWindows = process.platform == 'win32';
+const { version } = require('../package.json')
 
 module.exports = {
   setMainMenu
@@ -20,25 +21,14 @@ function setMainMenu(mainWindow) {
       ]
     },
     {
-      label: 'Edit',
-      submenu: [
-        { role: 'undo' },
-        { role: 'redo' },
-        { type: 'separator' },
-        { role: 'copy' },
-        { role: 'paste' }
-      ]
-    },
-    {
       label: 'View',
       submenu: [
         {role: 'reload'},
-        {role: 'forcereload'},
-        {role: 'toggledevtools'},
+        {role: 'forcereload'}
       ]
     },
     {
-    role: 'window',
+      role: 'window',
       submenu: [
         {role: 'minimize'},
         {role: 'close'}
@@ -47,10 +37,7 @@ function setMainMenu(mainWindow) {
     {
       role: 'help',
       submenu: [
-        {
-          label: 'Report Bug',
-          click () { console.log('Disabled') }
-        }
+        {label: `Version: ${version}`}
       ]
     }
   ];

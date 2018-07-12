@@ -87,6 +87,8 @@
       ]
     },
     "linux": {
+      "category": "Graphics",
+      "icon": "build/icons/",
       "target": [
         "AppImage"
       ]
