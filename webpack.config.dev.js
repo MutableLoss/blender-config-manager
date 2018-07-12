@@ -174,4 +174,3 @@ module.exports = merge.smart(baseConfig, {
     }
   },
 });
-``
