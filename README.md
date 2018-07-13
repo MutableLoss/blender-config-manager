@@ -1,4 +1,4 @@
-<div style="text-align: center; ">
+<div align="center">
   <h1 style="font-size: 36px;">
   Blender Config Manager
   </h1>
