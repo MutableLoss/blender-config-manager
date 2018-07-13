@@ -1,8 +1,5 @@
 <div align="center">
-  <h1 style="font-size: 36px;">
-  Blender Config Manager
-  </h1>
-  <img src="./images/blender-config-demoscreen.png"/>
+  <img src="./images/blender-config-demoscreen.png" alt="Blender Config Manager" />
 
   <h3>The Blender Config Manager Desktop Application offers a quick way for Blender
   Users to manage their configuration folders, without the hassle of manual folder management.</h3>
