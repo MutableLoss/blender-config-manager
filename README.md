@@ -1,7 +1,19 @@
-# Blender Config Manager
+<div style="text-align: center; ">
+  <h1 style="font-size: 36px;">
+  Blender Config Manager
+  </h1>
+  <img src="./images/blender-config-demoscreen.png"/>
 
-The Blender Config Manager is a quick way for Blender
-Users to manage their configuration folders, without the need for manual folder management.
+  <h3>The Blender Config Manager Desktop Application offers a quick way for Blender
+  Users to manage their configuration folders, without the hassle of manual folder management.</h3>
+  <div>
+    <a href="https://npmjs.org/package/blender-config-manager">
+      <img src="https://img.shields.io/npm/dm/blender-config-manager.svg" alt="downloads" />
+    </a>
+  </div>
+</div>
+
+
 
 ## Installation
 
