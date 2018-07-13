@@ -5,7 +5,16 @@
   Users to manage their configuration folders, without the hassle of manual folder management.</h3>
   <div>
     <a href="https://npmjs.org/package/blender-config-manager">
-      <img src="https://img.shields.io/npm/dm/blender-config-manager.svg" alt="downloads" />
+      <img src="https://img.shields.io/github/downloads/3desprit/blender-config-manager/total.svg?style=flat-square" alt="downloads" />
+    </a>
+    <a href="https://github.com/3DEsprit/blender-config-manager/issues">
+      <img src="https://img.shields.io/github/issues/3desprit/blender-config-manager.svg?style=flat-square"/>
+    </a>
+    <a href="https://github.com/3DEsprit/blender-config-manager/releases/latest">
+      <img src="https://img.shields.io/github/release-date/3desprit/blender-config-manager.svg?style=flat-square"/>
+    </a>
+    <a href="https://opensource.org/licenses/MIT">
+      <img src="https://img.shields.io/badge/License-MIT-green.svg?style=flat-square"/>
     </a>
   </div>
 </div>
