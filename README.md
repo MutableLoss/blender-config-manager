@@ -15,7 +15,7 @@
 ## Installation
 
 Installation is extremely easy. Download the appropriate download for your platform:
-Windows .zip, 
+Windows .zip (Coming very soon!), 
 OSX [DMG](https://github.com/3DEsprit/blender-config-manager/releases/download/1.0.1/Blender.Config.Manager-1.0.1.dmg), 
 Linux [.AppImage](https://github.com/3DEsprit/blender-config-manager/releases/download/1.0.1/blender-config-manager-1.0.1-x86_64.AppImage)).
 Execute the file, and follow any directions thereafter. 
