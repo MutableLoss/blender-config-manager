@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
-import Button from './button'
+import ContainedButton from './ContainedButton'
 import Folder from './folder'
 
 const FolderList = ({folders, select, selected, cancel}) => (
@@ -16,7 +16,7 @@ const FolderList = ({folders, select, selected, cancel}) => (
     </ul>
   </div>
   {cancel ?
-    <Button title="cancel" action={() => cancel()} name="Cancel" />
+    <ContainedButton title="cancel" action={() => cancel()} name="Cancel" />
   : null
   }
   </Fragment>
