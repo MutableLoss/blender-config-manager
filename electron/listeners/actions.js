@@ -1,62 +1,55 @@
 const { ipcMain, dialog } = require('electron')
+const { task } = require('folktale/concurrency/task');
 const { exec } = require('child_process')
 const fs = require('fs')
 const fse = require('fs-extra')
 const os = require('os')
-let blenderConfig;
 
-function checkPlatform() {  
-  if(process.platform == 'darwin') {
-    console.log('darwin')
-    blenderConfig = os.homedir() + '/Library/Application Support/Blender/'
-  } else if(process.platform == 'win32') {
-    console.log('win32')
-    blenderConfig = os.homedir() + '/AppData/Local/Blender Foundation/blender'
-  } else if(process.platform == 'linux') {
-    console.log('linux')
-    blenderConfig = os.homedir() + '/.config/blender/'
-  } else if(process.platform == 'freebsd') {
-    console.log('freebsd')
-    blenderConfig = os.homedir() + '/.config/blender/'
-  }
-}
-
+let blenderPlatform;
 const windowCache = {};
 const dockNotificationCache = {};
 
-ipcMain.on('show-folders', event => {
-  checkPlatform();
+blenderPlatform = switch(process.platform) {
+  case 'darwin':
+    os.homedir() + '/Library/Application Support/Blender/';
+    break;
+  case 'win32':
+    os.homedir() + '/AppData/Local/Blender Foundation/blender'
+    break;
+  case 'linux':
+    os.homedir() + '/.config/blender/';
+    break;
+  case 'freebsd':
+    os.homedir() + '/.config/blender/'
+    break;
+}
+console.log(blenderPlatform)
 
-  fs.readdir(blenderConfig, (err, files) => {
-    if(err) throw err;
-    event.sender.send('show-folders-response', files.filter(file => file !== '.DS_Store'));
-  })
+ipcMain.on('show-folders', event => {
+  task((res) => 
+    fs.readdir(blenderPlatform, (err, files) => 
+      err ? res.resolve(event.sender.send('show-folders-response', files.filter(file => file !== '.DS_Store'))) : res.reject(err)));
 })
 
 ipcMain.on('copy-settings', (event, from, to) => {
-  fse.copy(`${blenderConfig}/${from}`, `${blenderConfig}/${to}`, err => {
-    if(err) throw error;
-    event.sender.send('copy-settings-response');
-  })
+  task((res) =>
+    fse.copy(`${blenderPlatform}/${from}`, `${blenderPlatform}/${to}`, err => 
+      err ? res.resolve(event.sender.send('copy-settings-response')) : res.reject(err)));
 })
 
 ipcMain.on('remove-folder', (event, folder) => {
-  fs.rmdir(folder, err => {
-    if(err) throw err;
-    event.sender.send('remove-folder-response');
-  })
+  task((res) =>
+    fs.rmdir(folder, err =>
+      err ? res.resolve(event.sender.send('remove-folder-response')) : res.reject(err)));
 })
 
 ipcMain.on('disable-folder', (event, folder) => {
-  fs.rename(`${blenderConfig}/${folder}`, `${blenderConfig}/${folder}-old`, (err) => {
-    if(err) throw err;
-    event.sender.send('disable-folder-response');
-  })
+  task((res) =>
+    fs.rename(`${blenderPlatform}/${folder}`, `${blenderPlatform}/${folder}-old`, err => 
+      err ? res.resolve(event.sender.send('disable-folder-response')) : res.reject(err)));
 })
 
 ipcMain.on('enable-folder', (event, folder) => {
-  fs.rename(`${blenderConfig}/${folder}`, `${blenderConfig}/${folder.replace(/.old/, '')}`, (err) => {
-    if(err) throw err;
-    event.sender.send('enable-folder-response');
-  })
+  fs.rename(`${blenderPlatform}/${folder}`, `${blenderPlatform}/${folder.replace(/.old/, '')}`, err => 
+    err ? res.resolve(event.sender.send('enable-folder-response')) : res.reject(err)));
 })
