@@ -32,10 +32,10 @@ export default class Inner extends Component {
 
   componentDidMount() {
     ipcRenderer.on('show-folders-response', (event, folders) => this.setState({ folders: folders }))
-    ipcRenderer.on('remove-folder-response', (event) => this.responseRefresh())
-    ipcRenderer.on('disable-folder-response', (event) => this.responseRefresh())
-    ipcRenderer.on('enable-folder-response', (event) => this.responseRefresh())
-    ipcRenderer.on('copy-settings-response', (event) => this.responseRefresh())
+    ipcRenderer.on('remove-folder-response', event => this.responseRefresh())
+    ipcRenderer.on('disable-folder-response', event => this.responseRefresh())
+    ipcRenderer.on('enable-folder-response', event => this.responseRefresh())
+    ipcRenderer.on('copy-settings-response', event => this.responseRefresh())
   }
 
   componentWillUnmount() {
@@ -53,13 +53,13 @@ export default class Inner extends Component {
 
   resetSelected = () => this.setState({selected: '', copy: false, copySelect: ''})
   showFolders = () => ipcRenderer.send('show-folders')
-  copyPrompt = (selected) => this.setState({copy: true})
-  disableFolder = (name) => ipcRenderer.send('disable-folder', name)
-  enableFolder = (name) => ipcRenderer.send('enable-folder', name)
-  selectFolder = (name) => this.setState({selected: name})
-  selectCopy = (name) => this.setState({copySelect: name})
+  copyPrompt = selected => this.setState({copy: true})
+  disableFolder = name => ipcRenderer.send('disable-folder', name)
+  enableFolder = name => ipcRenderer.send('enable-folder', name)
+  selectFolder = name => this.setState({selected: name})
+  selectCopy = name => this.setState({copySelect: name})
 
-  removeFolder = (folder) => {
+  removeFolder = folder => {
     vex.dialog.confirm({
       message: `Are you sure you want to remove settings folder ${folder}?`,
       callback: value => {
