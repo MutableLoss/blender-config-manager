@@ -25,31 +25,31 @@ blenderPlatform = switch(process.platform) {
 }
 console.log(blenderPlatform)
 
+// show folders in blender config folder
 ipcMain.on('show-folders', event => {
   task((res) => 
     fs.readdir(blenderPlatform, (err, files) => 
-      err ? res.resolve(event.sender.send('show-folders-response', files.filter(file => file !== '.DS_Store'))) : res.reject(err)));
-})
+      err ? res.resolve(event.sender.send('show-folders-response', files.filter(file => file !== '.DS_Store'))) : res.reject(err))));
 
+// copy settings from one directory to another
 ipcMain.on('copy-settings', (event, from, to) => {
   task((res) =>
     fse.copy(`${blenderPlatform}/${from}`, `${blenderPlatform}/${to}`, err => 
-      err ? res.resolve(event.sender.send('copy-settings-response')) : res.reject(err)));
-})
+      err ? res.resolve(event.sender.send('copy-settings-response')) : res.reject(err))));
 
+// remove a blender config folder
 ipcMain.on('remove-folder', (event, folder) => {
   task((res) =>
     fs.rmdir(folder, err =>
-      err ? res.resolve(event.sender.send('remove-folder-response')) : res.reject(err)));
-})
+      err ? res.resolve(event.sender.send('remove-folder-response')) : res.reject(err))));
 
+// disable a blender config folder by renaming to name.old
 ipcMain.on('disable-folder', (event, folder) => {
   task((res) =>
     fs.rename(`${blenderPlatform}/${folder}`, `${blenderPlatform}/${folder}-old`, err => 
-      err ? res.resolve(event.sender.send('disable-folder-response')) : res.reject(err)));
-})
+      err ? res.resolve(event.sender.send('disable-folder-response')) : res.reject(err))));
 
+// enable a disabled folder
 ipcMain.on('enable-folder', (event, folder) => {
   fs.rename(`${blenderPlatform}/${folder}`, `${blenderPlatform}/${folder.replace(/.old/, '')}`, err => 
-    err ? res.resolve(event.sender.send('enable-folder-response')) : res.reject(err)));
-})
+    err ? res.resolve(event.sender.send('enable-folder-response')) : res.reject(err))));
