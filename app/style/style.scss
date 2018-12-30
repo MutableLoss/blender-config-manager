@@ -5,24 +5,3 @@
 
 @import '../../node_modules/vex-js/sass/vex';
 @import '../../node_modules/vex-js/sass/vex-theme-flat-attack';
-// @import '../../node_modules/vex-js/sass/vex-theme-default';
-// @import '../../node_modules/vex-js/sass/vex-theme-os';
-
-body {
-  box-sizing: border-box;
-  width: $app-width;
-  height: $app-height;
-  margin: 0;
-  padding: 0;
-  font-family: 'Audiowide';
-  color: $system-offwhite;
-}
-
-.titlebar {
-  -webkit-app-region: drag;
-  text-align: center;
-  padding: 15px 0;
-  width: 100%;
-  color: $title-color;
-  font-size: $font-base * 2;
-}

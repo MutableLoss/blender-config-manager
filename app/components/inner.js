@@ -87,20 +87,18 @@ export default class Inner extends Component {
   render() {
     return (
       <Fragment>
-        <div className="inner-container">
-          <Navigator folders={this.state.folders} selected={this.state.selected} selectFolder={this.selectFolder} />
-          <div className="action-container">
-            <Actionator copy={this.state.copy} copySelect={this.state.copySelect} folders={this.state.folders} resetSelected={this.resetSelected} selectCopy={this.selectCopy} selected={this.state.selected}>
-              <Actions
-                selected={this.state.selected}
-                folders={this.state.folders}
-                enable={this.enableFolder}
-                disable={this.disableFolder}
-                remove={this.removeFolder}
-                copy={this.copyPrompt}
-              />
-            </Actionator>
-          </div>
+        <Navigator folders={this.state.folders} selected={this.state.selected} selectFolder={this.selectFolder} />
+        <div className="action-container">
+          <Actionator copy={this.state.copy} copySelect={this.state.copySelect} folders={this.state.folders} resetSelected={this.resetSelected} selectCopy={this.selectCopy} selected={this.state.selected}>
+            <Actions
+              selected={this.state.selected}
+              folders={this.state.folders}
+              enable={this.enableFolder}
+              disable={this.disableFolder}
+              remove={this.removeFolder}
+              copy={this.copyPrompt}
+            />
+          </Actionator>
         </div>
         <Confirm copy={this.state.copy} copySelect={this.state.copySelect} copyFolder={this.copyFolder} />
       </Fragment>

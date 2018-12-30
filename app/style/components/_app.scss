@@ -1,33 +1,3 @@
-.app-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-content: stretch;
-  align-items: stretch;
-  width: $app-width;
-  height: $app-height;
-  background-color: $app-background;
-
-  .app-inner {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: stretch;
-    height: 100%;
-  }
-
-  .inner-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: stretch;
-    height: 100%;
-    margin-top: 20px;
-  }
-}
-
 .action-container,
 .navigator-container {
   width: $app-width / 2;
