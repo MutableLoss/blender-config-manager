@@ -36,7 +36,7 @@ function createBrowserWindow(browserWindowOpts) {
   if(process.env.HOT) {
     win.openDevTools()
     require('devtron').install()
-    BrowserWindow.addDevToolsExtension('/Users/dbrown/Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.2.3_0/')
+    BrowserWindow.addDevToolsExtension('/Users/dbrown/Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.4.3_0/')
   }
   
   win.on('close', () => {
