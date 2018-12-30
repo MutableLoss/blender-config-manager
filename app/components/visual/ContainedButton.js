@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button'
 export const ContainedButton = ({classes, title, action, name}) => (
   <Button 
     className={classes.button}
+    color="primary"
     onClick={action}
     title={title}>
       {name}
@@ -14,7 +15,8 @@ export const ContainedButton = ({classes, title, action, name}) => (
 
 const styles = theme => ({
   button: {
-    margin: 4
+    margin: 4,
+    width: 150
   },
   input: {
     display: 'none'

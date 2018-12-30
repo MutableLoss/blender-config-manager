@@ -1,14 +1,16 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+
 import ContainedButton from './ContainedButton'
 
 const Actions = ({selected, folders, copy, enable, disable, remove}) => (
-  <div className="actions">
+  <ButtonContainer>
     {selected.match(/^\d{1}\.\d{2}/) ?
       <Fragment>
         <ContainedButton title="copy selected settings folder" name="Copy Settings" action={() => copy(selected)} />
         {selected.match(/-old/) === null ?
-          <Fragment>
+        <Fragment>
             {folders.indexOf(`${selected}-old`) === -1 ?
               <ContainedButton title="disable settings folder" name="Disable Folder" action={() => disable(selected)} />
             :
@@ -23,11 +25,14 @@ const Actions = ({selected, folders, copy, enable, disable, remove}) => (
         <ContainedButton title="remove the selected settings folder" name="Remove Folder" action={() => remove(selected)} />
       </Fragment>
     : <div>Select a Config Folder</div>}
-  </div>
-  
+  </ButtonContainer>
 )
 
-export default Actions
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 Actions.propTypes = {
   selected: PropTypes.string.isRequired,
@@ -37,3 +42,5 @@ Actions.propTypes = {
   disable: PropTypes.func,
   remove: PropTypes.func
 }
+
+export default Actions
