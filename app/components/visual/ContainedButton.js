@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 
-export const ContainedButton = ({classes, title, action, name}) => (
+export const ContainedButton = ({ classes, title, action, name }) => (
   <Button 
     className={classes.button}
     color="primary"
