@@ -18,16 +18,21 @@ const theme = createMuiTheme({
 })
 
 export default class App extends Component {
+
+  renderApp = () => (
+    <AppContainer>
+      <TitleBar>Blender Config Manager</TitleBar>
+      <InnerContainer>
+        <Inner />
+      </InnerContainer>
+    </AppContainer>
+  )
+
   render() {
     return (
       <Fragment>
         <MuiThemeProvider theme={theme}>
-          <AppContainer>
-            <TitleBar>Blender Config Manager</TitleBar>
-            <InnerContainer>
-              <Inner />
-            </InnerContainer>
-          </AppContainer>
+          {this.renderApp()}
           <Global />
         </MuiThemeProvider>
       </Fragment>
