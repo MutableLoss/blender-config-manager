@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { ipcRenderer } from 'electron'
+import fs from 'fs'
+const os = require('os')
 
 import vex from 'vex-js'
 vex.registerPlugin(require('vex-dialog'))
@@ -11,6 +13,27 @@ import Actionator from './actionator'
 import Actions from './visual/actions'
 import Confirm from './visual/confirm'
 import FolderList from './visual/folderList'
+
+let blenderFolder, blenderSource
+
+let platform = process.platform
+switch(platform) {
+  case 'darwin':
+    blenderSource = os.homedir() + '/Library/Application\ Support'
+    break
+  case 'win32':
+    blenderSource = os.homedir() + '/AppData/Local/Blender Foundation'
+    break
+  case 'linux':
+    blenderSource = os.homedir() + '/.config'
+    break
+  case 'freebsd':
+    blenderSource = os.homedir() + '/.config'
+    break
+}
+
+blenderFolder = blenderSource + (platform === 'darwin' ? '/Blender' : '/blender')
+
 
 export default class Inner extends Component {
   constructor(props) {
@@ -30,6 +53,10 @@ export default class Inner extends Component {
     this.setState({interval: interval})
   }
 
+  componentShouldUpdate(prevProps, prevState) {
+    return true
+  }
+
   componentDidMount() {
     ipcRenderer.on('show-folders-response', (event, folders) => this.setState({ folders: folders }))
     ipcRenderer.on('remove-folder-response', event => this.responseRefresh())
@@ -40,6 +67,7 @@ export default class Inner extends Component {
 
   componentWillUnmount() {
     clearInterval(this.state.interval)
+
     ipcRenderer.removeListener('show-folders-response', (event, folders) => this.setState({ folders: folders }))
     ipcRenderer.removeListener('remove-folder-response', (event) => this.responseRefresh())
     ipcRenderer.removeListener('disable-folder-response', (event) => this.responseRefresh())
@@ -52,19 +80,20 @@ export default class Inner extends Component {
   }
 
   resetSelected = () => this.setState({selected: '', copy: false, copySelect: ''})
-  showFolders = () => ipcRenderer.send('show-folders')
+  showFolders = () => ipcRenderer.send('show-folders', blenderFolder)
   copyPrompt = selected => this.setState({copy: true})
-  disableFolder = name => ipcRenderer.send('disable-folder', name)
-  enableFolder = name => ipcRenderer.send('enable-folder', name)
+  disableFolder = name => ipcRenderer.send('disable-folder', blenderFolder, name)
+  enableFolder = name => ipcRenderer.send('enable-folder', blenderFolder, name)
   selectFolder = name => this.setState({selected: name})
   selectCopy = name => this.setState({copySelect: name})
+  statFolder = name => fs.stat(blenderFolder, (err, stats) => err ? err : stats)
 
   removeFolder = folder => {
     vex.dialog.confirm({
       message: `Are you sure you want to remove settings folder ${folder}?`,
       callback: value => {
         if(value) {
-          ipcRenderer.send('remove-folder', name)
+          ipcRenderer.send('remove-folder', blenderFolder, name)
         }
       }
     })
@@ -73,14 +102,9 @@ export default class Inner extends Component {
   copyFolder = () => {
     vex.dialog.confirm({
       message: `Replacing settings in ${this.state.copySelect} with the settings from ${this.state.selected}. Continue?`,
-      callback: value => {
-        if(value) {
-          console.log('Copying: ' + this.state.selected + ' to ' + this.state.copySelect)
-          ipcRender.send('copy-settings', this.state.selected, this.state.copySelect)
-        } else {
-          this.resetSelected()
-        }
-      }
+      callback: value =>
+        value ? ipcRender.send('copy-settings', blenderFolder, this.state.selected, this.state.copySelect)
+          : this.resetSelected()
     })
   }
 
