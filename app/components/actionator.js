@@ -14,7 +14,7 @@ export default class Actionator extends Component {
     return(
       <ActionContainer>
         {this.props.copy ?
-          <FolderList folders={this.props.folders.filter(obj => obj !== this.props.selected)} select={this.props.selectCopy} selected={this.props.copySelect} cancel={this.props.resetSelected} />
+          <FolderList folders={this.props.folders.filter(obj => obj !== this.props.selected)} selectFolder={this.props.selectCopy} selected={this.props.copySelect} cancel={this.props.resetSelected} />
         :
           <Fragment>
             {this.props.children}
