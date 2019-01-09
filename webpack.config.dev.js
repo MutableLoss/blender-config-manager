@@ -48,15 +48,6 @@ module.exports = merge.smart(baseConfig, {
         }
       },
       {
-        test: /\.(?:sass|scss)$/,
-        use: [
-          'style-loader',
-          'css-loader', {
-            loader: 'sass-loader'
-          }
-        ]
-      },
-      {
         test: /\.css$/,
         use: [
           'style-loader',
