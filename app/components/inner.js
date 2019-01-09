@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { ipcRenderer } from 'electron'
+import styled from 'styled-components'
 import fs from 'fs'
-const os = require('os')
+import os from 'os'
 
 import vex from 'vex-js'
 vex.registerPlugin(require('vex-dialog'))
@@ -112,7 +113,7 @@ export default class Inner extends Component {
     return (
       <Fragment>
         <Navigator folders={this.state.folders} selected={this.state.selected} selectFolder={this.selectFolder} />
-        <div className="action-container">
+        <ActionList>
           <Actionator copy={this.state.copy} copySelect={this.state.copySelect} folders={this.state.folders} resetSelected={this.resetSelected} selectCopy={this.selectCopy} selected={this.state.selected}>
             <Actions
               selected={this.state.selected}
@@ -123,9 +124,16 @@ export default class Inner extends Component {
               copy={this.copyPrompt}
             />
           </Actionator>
-        </div>
+        </ActionList>
         <Confirm copy={this.state.copy} copySelect={this.state.copySelect} copyFolder={this.copyFolder} />
       </Fragment>
     )
   }
 }
+
+const ActionList = styled.div`
+  display: flex;
+  flex: 1 0 45%;
+  flex-direction: column;
+  justify-content: center;
+`

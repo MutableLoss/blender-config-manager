@@ -3,6 +3,8 @@ import styled, { createGlobalStyle } from 'styled-components'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import blue from '@material-ui/core/colors/blue'
 
+import * as vars from '../style/variables'
+
 import Inner from './inner'
 
 const theme = createMuiTheme({
@@ -51,6 +53,17 @@ const Global = createGlobalStyle`
 
   div {
     padding: 0.5 1rem;
+  }
+
+  .vex-content {
+    background: ${vars.folderBackground} !important;
+    color: ${vars.systemOffwhite} !important;
+
+    &.vex-dialog-button-secondary {
+      background: ${vars.appBackground} !important;
+      color: ${vars.systemOffwhite} !important;
+      box-shadow: inset 0 3px #333 !important;
+    }
   }
 `
 

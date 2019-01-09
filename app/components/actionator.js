@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 import Actions from './visual/actions'
 import FolderList from './visual/folderList'
@@ -11,7 +12,7 @@ export default class Actionator extends Component {
 
   render() {
     return(
-      <div className="action-container">
+      <ActionContainer>
         {this.props.copy ?
           <FolderList folders={this.props.folders.filter(obj => obj !== this.props.selected)} select={this.props.selectCopy} selected={this.props.copySelect} cancel={this.props.resetSelected} />
         :
@@ -19,10 +20,17 @@ export default class Actionator extends Component {
             {this.props.children}
           </Fragment>
         }
-      </div>
+      </ActionContainer>
     )
   }
 }
+
+const ActionContainer = styled.div`
+  display: flex;
+  flex: 1 0 45%;
+  flex-direction: column;
+  justify-content: center;
+`
 
 Actionator.propTypes = {
   copy: PropTypes.bool.isRequired,

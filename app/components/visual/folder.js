@@ -1,9 +1,22 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-const Folder = ({name, select, selected}) => (
-  <div className={`folder-name ${name === selected ? 'selected' : null}`} onClick={() => select(name)}>{name}</div>
+import * as vars from '../../style/variables'
+
+const Folder = ({ name, select, selected }) => (
+  <FolderItem key={name} className={name === selected ? 'selected' : null} onClick={() => select(name)}>
+    {name}
+  </FolderItem>
 )
+
+const FolderItem = styled.div`
+  margin: $padding-sm 0;
+
+  &.selected {
+    background: ${vars.selectedBack};
+  }
+`
 
 export default Folder
 
