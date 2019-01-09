@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import Folder from './visual/folder'
+import FolderList from './visual/folderList'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+
+// import Folder from './visual/folder'
 
 export default class Navigator extends Component {
   constructor(props) {
@@ -9,20 +12,19 @@ export default class Navigator extends Component {
 
   render() {
     return (
-      <div className="navigator-container">
-        <div className="folder-list">
-          <ul className="folders">
-          {this.props.folders.map(folder => (
-            <li className="folder" key={folder}>
-              <Folder name={folder} select={this.props.selectFolder} selected={this.props.selected} />
-            </li>
-          ))}
-          </ul>
-        </div>
-      </div>
+      <NavigationContainer>
+        <FolderList {...this.props} />
+      </NavigationContainer>
     )
   }
 }
+
+const NavigationContainer = styled.div`
+  display: flex;
+  flex: 1 0 45%;
+  flex-direction: column;
+  justify-content: center;
+`
 
 Navigator.propTypes = {
   folders: PropTypes.array.isRequired,
