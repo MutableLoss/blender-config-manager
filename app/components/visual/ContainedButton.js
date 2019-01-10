@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 
-export const ContainedButton = ({ classes, title, action, name }) => (
+export const ContainedButton = ({ classes, color, title, action, name }) => (
   <Button 
     className={classes.button}
-    color="primary"
+    color={color}
     variant="outlined"
     onClick={action}
     title={title}>
@@ -28,6 +28,7 @@ const styles = theme => ({
 })
 
 ContainedButton.defaultProps = {
+  color: 'primary',
   name: '',
   title: '' 
 }
@@ -35,6 +36,7 @@ ContainedButton.defaultProps = {
 ContainedButton.propTypes = {
   action: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
+  color: PropTypes.string,
   name: PropTypes.string,
   title: PropTypes.string
 }

@@ -19,8 +19,8 @@ const FolderList = ({ folders, selectFolder, selected, cancel, ...props }) => (
     </Folders>
     {cancel ?
       <ButtonContainer>
-        <ContainedButton title="cancel" action={() => cancel()} name="Cancel" />
         {props.children}
+        <ContainedButton title="cancel" color="secondary" action={() => cancel()} name="Cancel" />
       </ButtonContainer>
     : null
     }
@@ -37,7 +37,7 @@ const Folders = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  background-color: ${vars.folderBackground};
+  background-color: ${vars.folderBackgroundDark};
   box-shadow: inset 0px 2px 2px 1px hsla(0, 0%, 0%, 0.1);
   height: 100%;
   margin: 24px;
