@@ -12,9 +12,10 @@ const Folder = ({ name, select, selected }) => (
 
 const FolderItem = styled.div`
   margin: $padding-sm 0;
+  color: ${vars.offWhite};
 
   &.selected {
-    background: ${vars.selectedBack};
+    background: ${vars.blueDark};
   }
 `
 
