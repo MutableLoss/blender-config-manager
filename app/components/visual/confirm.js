@@ -2,10 +2,10 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import ContainedButton from './ContainedButton'
 
-const Confirm = ({copy, copySelect, copyFolder}) => (
+const Confirm = ({ copy, copySelect, copyFolder }) => (
   <Fragment>
     {copySelect && copy ?
-      <ContainedButton title="copy selected settings folder" name="Copy Settings" onClick={copyFolder}>Copy Settings</ContainedButton>
+      <ContainedButton title="copy selected settings folder" name="Copy Settings" action={copyFolder}>Copy Settings</ContainedButton>
     :
       null
     }
