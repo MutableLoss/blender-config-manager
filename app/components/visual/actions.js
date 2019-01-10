@@ -13,19 +13,19 @@ const Actions = ({selected, folders, copy, enable, disable, remove}) => (
         {selected.match(/-old/) === null ?
         <Fragment>
             {folders.indexOf(`${selected}-old`) === -1 ?
-              <ContainedButton title="disable settings folder" name="Disable Folder" action={() => disable(selected)} />
+              <ContainedButton title="disable settings folder" name="Disable" action={() => disable(selected)} />
             :
               <ActionMessage>Only one Disabled Folder per Version</ActionMessage>
             }
           </Fragment>
         :
           <Fragment>
-            <ContainedButton title="enable settings folder" name="Enable Folder" action={() => enable(selected)} />
+            <ContainedButton title="enable settings folder" name="Enable" action={() => enable(selected)} />
           </Fragment>
         }
-        <ContainedButton title="remove the selected settings folder" name="Remove Folder" action={() => remove(selected)} />
+        <ContainedButton title="remove the selected settings folder" name="Remove" action={() => remove(selected)} />
       </Fragment>
-    : <ActionMessage>Select a Config Folder</ActionMessage>}
+    : <ActionMessage>Select Folder</ActionMessage>}
   </ButtonContainer>
 )
 

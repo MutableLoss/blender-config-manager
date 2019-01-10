@@ -5,7 +5,7 @@ import ContainedButton from './ContainedButton'
 const Confirm = ({ copy, copySelect, copyFolder }) => (
   <Fragment>
     {copySelect && copy ?
-      <ContainedButton title="copy selected settings folder" name="Copy Settings" action={copyFolder}>Copy Settings</ContainedButton>
+      <ContainedButton title="copy selected settings folder" name="Copy" action={copyFolder} />
     :
       null
     }
