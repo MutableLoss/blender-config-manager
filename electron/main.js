@@ -11,8 +11,7 @@ const windows = []
 
 function createBrowserWindow(browserWindowOpts) {
   let win = new BrowserWindow(Object.assign({
-    titleBarStyle: 'hidden',
-    frame: false,
+    frame: process.platform === 'darwin' ? false : true,
     width: 710,
     height: 500,
     minWidth: 400,

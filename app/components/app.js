@@ -26,7 +26,9 @@ export default class App extends Component {
 
   renderApp = () => (
     <AppContainer>
+      {process.platform === 'darwin' ?
       <TitleBar>Blender Config Manager</TitleBar>
+      : null}
       <InnerContainer>
         <Inner />
       </InnerContainer>
