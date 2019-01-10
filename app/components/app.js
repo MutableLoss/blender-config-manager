@@ -16,6 +16,9 @@ const theme = createMuiTheme({
       light: blue[400],
       main: blue[500]
     }
+  },
+  typography: {
+    useNextVariants: true
   }
 })
 
@@ -43,12 +46,13 @@ export default class App extends Component {
 }
 
 const Global = createGlobalStyle`
-  html, body {
+  html, body, #app {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'Audiowide';
     color: 'white';
+    height: 100%;
   }
 
   div {
@@ -73,9 +77,8 @@ const AppContainer = styled.div`
   justify-content: flex-start;
   align-content: stretch;
   align-items: stretch;
-  width: 600px;
-  height: 500px;
   background-color: hsl(0, 2%, 23%);
+  height: 100%;
 `
 
 const TitleBar = styled.div `
