@@ -13,8 +13,10 @@ function createBrowserWindow(browserWindowOpts) {
   let win = new BrowserWindow(Object.assign({
     titleBarStyle: 'hidden',
     frame: false,
-    width: 600,
+    width: 710,
     height: 500,
+    minWidth: 400,
+    minHeight: 400,
     resizable: true,
     show: false,
     icon: path.join(__dirname, 'icons/512x512.png')
