@@ -3,3 +3,4 @@ dump.rdb
 
 build/
 dist/
+.electron-builder
