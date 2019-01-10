@@ -20,20 +20,20 @@ let blenderSource
 let platform = process.platform
 switch(platform) {
   case 'darwin':
-    blenderSource = os.homedir() + '/Library/Application\ Support'
+    blenderSource = os.homedir() + '/Library/Application\ Support/'
     break
   case 'win32':
-    blenderSource = os.homedir() + '/AppData/Local/Blender Foundation'
+    blenderSource = os.homedir() + '\\AppData\\Roaming\\Blender\ Foundation\\'
     break
   case 'linux':
-    blenderSource = os.homedir() + '/.config'
+    blenderSource = os.homedir() + '/.config/'
     break
   case 'freebsd':
-    blenderSource = os.homedir() + '/.config'
+    blenderSource = os.homedir() + '/.config/'
     break
 }
 
-const blenderFolder = blenderSource + (platform === 'darwin' ? '/Blender' : '/blender')
+const blenderFolder = blenderSource + (platform === 'linux' ? 'blender' : 'Blender')
 
 
 export default class Inner extends Component {
