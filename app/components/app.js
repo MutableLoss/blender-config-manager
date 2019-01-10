@@ -12,9 +12,9 @@ const theme = createMuiTheme({
     overrides: {},
     primary: {
       contrastText: 'white',
-      dark: blue[700],
-      light: blue[400],
-      main: blue[500]
+      dark: vars.blueDark,
+      light: vars.blueLight,
+      main: vars.blue
     }
   },
   typography: {
@@ -60,13 +60,21 @@ const Global = createGlobalStyle`
   }
 
   .vex-content {
-    background: ${vars.folderBackground} !important;
+    background: ${vars.folderBackgroundDark} !important;
     color: ${vars.systemOffwhite} !important;
 
-    &.vex-dialog-button-secondary {
-      background: ${vars.appBackground} !important;
-      color: ${vars.systemOffwhite} !important;
-      box-shadow: inset 0 3px #333 !important;
+    &.vex-dialog-button {
+      box-shadow: inset 0 3px #111 !important;
+    }
+  }
+  
+  .vex-dialog-button.vex-last {
+    background: ${vars.folderBackground} !important;
+  }
+
+  .vex-dialog-button.vex-first {
+    &:hover {
+      background-color: ${vars.folderBackgroundDark} !important;
     }
   }
 `
@@ -77,7 +85,7 @@ const AppContainer = styled.div`
   justify-content: flex-start;
   align-content: stretch;
   align-items: stretch;
-  background-color: hsl(0, 2%, 23%);
+  background-color: ${vars.folderBackgroundDarker};
   height: 100%;
 `
 
@@ -85,8 +93,9 @@ const TitleBar = styled.div `
   -webkit-app-region: drag;
   text-align: center;
   padding: 15px 0;
+  font-size: 1.5rem;
   width: 100%;
-  color: hsl(207, 69%, 72%);
+  color: ${vars.blueLight};
   font-size: $font-base * 2;
 `
 
