@@ -1,6 +1,6 @@
 {
   "name": "blender-config-manager",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Blender Configuration Manager",
   "main": "./build/main.js",
   "scripts": {
@@ -36,9 +36,10 @@
     "html-loader": "0.5.5",
     "html-webpack-plugin": "3.2.0",
     "mini-css-extract-plugin": "0.4.1",
+    "resolve-url-loader": "^3.0.0",
     "style-loader": "0.21.0",
-    "uglifyjs-webpack-plugin": "1.2.7",
-    "url-loader": "1.0.1",
+    "terser-webpack-plugin": "^1.2.1",
+    "url-loader": "^1.1.2",
     "webpack": "4.15.1",
     "webpack-bundle-analyzer": "2.13.1",
     "webpack-cli": "2.1.3",
