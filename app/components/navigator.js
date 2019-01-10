@@ -23,7 +23,7 @@ const NavigationContainer = styled.div`
   display: flex;
   flex: 1 0 45%;
   flex-direction: column;
-  justify-content: center;
+  justify-content: stretch;
 `
 
 Navigator.propTypes = {
