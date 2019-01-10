@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import ContainedButton from './ContainedButton'
+import * as vars from '../../style/variables'
 
 const Actions = ({selected, folders, copy, enable, disable, remove}) => (
   <ButtonContainer>
@@ -14,7 +15,7 @@ const Actions = ({selected, folders, copy, enable, disable, remove}) => (
             {folders.indexOf(`${selected}-old`) === -1 ?
               <ContainedButton title="disable settings folder" name="Disable Folder" action={() => disable(selected)} />
             :
-              <div>Only one Disabled Folder per Version</div>
+              <ActionMessage>Only one Disabled Folder per Version</ActionMessage>
             }
           </Fragment>
         :
@@ -24,7 +25,7 @@ const Actions = ({selected, folders, copy, enable, disable, remove}) => (
         }
         <ContainedButton title="remove the selected settings folder" name="Remove Folder" action={() => remove(selected)} />
       </Fragment>
-    : <div>Select a Config Folder</div>}
+    : <ActionMessage>Select a Config Folder</ActionMessage>}
   </ButtonContainer>
 )
 
@@ -33,6 +34,10 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 24px;
+`
+
+const ActionMessage = styled.div`
+  color: ${vars.blue};
 `
 
 Actions.propTypes = {
