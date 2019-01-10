@@ -32,6 +32,7 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 24px;
 `
 
 Actions.propTypes = {
