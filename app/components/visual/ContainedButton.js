@@ -7,6 +7,7 @@ export const ContainedButton = ({ classes, title, action, name }) => (
   <Button 
     className={classes.button}
     color="primary"
+    variant="outlined"
     onClick={action}
     title={title}>
       {name}
