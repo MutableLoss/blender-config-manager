@@ -107,5 +107,5 @@ const InnerContainer = styled.div `
   align-content: stretch;
   align-items: stretch;
   height: 100%;
-  margin-top: 16px;
+  margin: 24px 0;
 `
