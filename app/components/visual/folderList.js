@@ -6,7 +6,7 @@ import ContainedButton from './ContainedButton'
 import Folder from './folder'
 import * as vars from '../../style/variables'
 
-const FolderList = ({ folders, selectFolder, selected, cancel }) => (
+const FolderList = ({ folders, selectFolder, selected, cancel, ...props }) => (
   <Fragment>
     <Folders>
       <List>
@@ -18,19 +18,29 @@ const FolderList = ({ folders, selectFolder, selected, cancel }) => (
       </List>
     </Folders>
     {cancel ?
-      <ContainedButton title="cancel" action={() => cancel()} name="Cancel" />
+      <ButtonContainer>
+        <ContainedButton title="cancel" action={() => cancel()} name="Cancel" />
+        {props.children}
+      </ButtonContainer>
     : null
     }
   </Fragment>
 )
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+`
+
 const Folders = styled.div`
+  display: flex;
+  flex-direction: column;
   border-radius: 5px;
-  margin: 15px;
   background-color: ${vars.folderBackground};
   box-shadow: inset 0px 2px 2px 1px hsla(0, 0%, 0%, 0.1);
   height: 100%;
-  margin: 0 24px 24px;
+  margin: 24px;
 `
 
 const List = styled.ul`

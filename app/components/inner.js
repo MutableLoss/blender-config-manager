@@ -114,7 +114,14 @@ export default class Inner extends Component {
       <Fragment>
         <Navigator folders={this.state.folders} selected={this.state.selected} selectFolder={this.selectFolder} />
         <ActionList>
-          <Actionator copy={this.state.copy} copySelect={this.state.copySelect} folders={this.state.folders} resetSelected={this.resetSelected} selectCopy={this.selectCopy} selected={this.state.selected}>
+          <Actionator 
+            copy={this.state.copy}
+            copyFolder={this.copyFolder}
+            copySelect={this.state.copySelect}
+            folders={this.state.folders}
+            resetSelected={this.resetSelected}
+            selectCopy={this.selectCopy}
+            selected={this.state.selected}>
             <Actions
               selected={this.state.selected}
               folders={this.state.folders}
@@ -125,7 +132,6 @@ export default class Inner extends Component {
             />
           </Actionator>
         </ActionList>
-        <Confirm copy={this.state.copy} copySelect={this.state.copySelect} copyFolder={this.copyFolder} />
       </Fragment>
     )
   }
@@ -135,5 +141,6 @@ const ActionList = styled.div`
   display: flex;
   flex: 1 0 45%;
   flex-direction: column;
-  justify-content: center;
+  justify-content: stretch;
+  align-items: flex-start;
 `

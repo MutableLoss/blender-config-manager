@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import Actions from './visual/actions'
 import FolderList from './visual/folderList'
+import Confirm from './visual/confirm'
 
 export default class Actionator extends Component {
   constructor(props) {
@@ -14,7 +15,9 @@ export default class Actionator extends Component {
     return(
       <ActionContainer>
         {this.props.copy ?
-          <FolderList folders={this.props.folders.filter(obj => obj !== this.props.selected)} selectFolder={this.props.selectCopy} selected={this.props.copySelect} cancel={this.props.resetSelected} />
+          <FolderList folders={this.props.folders.filter(obj => obj !== this.props.selected)} selectFolder={this.props.selectCopy} selected={this.props.copySelect} cancel={this.props.resetSelected}>
+            <Confirm copy={this.props.copy} copySelect={this.props.copySelect} copyFolder={this.props.copyFolder} />
+          </FolderList>
         :
           <Fragment>
             {this.props.children}
@@ -27,9 +30,16 @@ export default class Actionator extends Component {
 
 const ActionContainer = styled.div`
   display: flex;
-  flex: 1 0 45%;
   flex-direction: column;
+  justify-content: stretch;
+  height: 100%;
+  width: 100%;
+`
+
+const ButtonContainer = styled.div`
+  display: flex;
   justify-content: center;
+  margin-bottom:
 `
 
 Actionator.propTypes = {
