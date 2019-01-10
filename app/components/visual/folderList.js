@@ -40,7 +40,8 @@ const Message = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
 `
 
 const Folders = styled.div`
@@ -56,6 +57,7 @@ const Folders = styled.div`
 const List = styled.ul`
   list-style: none;
   padding: 0 8px;
+  overflow-y: scroll;
 `
 
 const ListItem = styled.li`
