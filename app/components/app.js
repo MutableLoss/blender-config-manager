@@ -18,6 +18,9 @@ const theme = createMuiTheme({
     }
   },
   typography: {
+    fontFamily: 'Michroma',
+    fontSize: 12,
+    fontWeightRegular: 400,
     useNextVariants: true
   }
 })
@@ -52,7 +55,7 @@ const Global = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Audiowide';
+    font-family: 'Press Start 2P', 'Audiowide';
     color: 'white';
     height: 100%;
   }
