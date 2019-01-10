@@ -44,7 +44,6 @@ const ButtonContainer = styled.div`
 
 Actionator.propTypes = {
   copy: PropTypes.bool.isRequired,
-  children: PropTypes.children,
   copySelect: PropTypes.string.isRequired,
   folders: PropTypes.array.isRequired,
   resetSelected: PropTypes.func.isRequired,
