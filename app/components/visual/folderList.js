@@ -9,13 +9,19 @@ import * as vars from '../../style/variables'
 const FolderList = ({ folders, selectFolder, selected, cancel, ...props }) => (
   <Fragment>
     <Folders>
-      <List>
-        {folders.map(folder => (
-          <ListItem key={folder}>
-            <Folder name={folder} select={selectFolder} selected={selected} />
-          </ListItem>
-        ))}
-      </List>
+      {props.folderMissing ?
+        <List>
+          <Message>Blender Data Missing</Message>
+        </List>
+      :
+        <List>
+          {folders.map(folder => (
+            <ListItem key={folder}>
+              <Folder name={folder} select={selectFolder} selected={selected} />
+            </ListItem>
+          ))}
+        </List>
+      }
     </Folders>
     {cancel ?
       <ButtonContainer>
@@ -26,6 +32,10 @@ const FolderList = ({ folders, selectFolder, selected, cancel, ...props }) => (
     }
   </Fragment>
 )
+
+const Message = styled.div`
+  color: ${vars.offWhite};
+`
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -45,7 +55,7 @@ const Folders = styled.div`
 
 const List = styled.ul`
   list-style: none;
-  padding: 8px;
+  padding: 0 8px;
 `
 
 const ListItem = styled.li`

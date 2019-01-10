@@ -15,7 +15,7 @@ import Actions from './visual/actions'
 import Confirm from './visual/confirm'
 import FolderList from './visual/folderList'
 
-let blenderFolder, blenderSource
+let blenderSource
 
 let platform = process.platform
 switch(platform) {
@@ -33,7 +33,7 @@ switch(platform) {
     break
 }
 
-blenderFolder = blenderSource + (platform === 'darwin' ? '/Blender' : '/blender')
+const blenderFolder = blenderSource + (platform === 'darwin' ? '/Blender' : '/blender')
 
 
 export default class Inner extends Component {
@@ -41,6 +41,7 @@ export default class Inner extends Component {
     super(props)
 
     this.state = {
+      folderMissing: false,
       folders: [],
       interval: undefined,
       selected: '',
@@ -50,11 +51,14 @@ export default class Inner extends Component {
   }
 
   componentWillMount() {
-    let interval = setInterval(this.showFolders(), 5000)
+    let interval = setInterval(() => fs.stat(blenderFolder, (err, stats) => {
+      if(stats) { this.showFolders() }
+      stats ?  this.setState({ folderMissing: false }) : this.setState({ folderMissing: true })
+    }), 2000)
     this.setState({interval: interval})
   }
 
-  componentShouldUpdate(prevProps, prevState) {
+  shouldComponentUpdate(prevProps, prevState) {
     return true
   }
 
@@ -87,7 +91,6 @@ export default class Inner extends Component {
   enableFolder = name => ipcRenderer.send('enable-folder', blenderFolder, name)
   selectFolder = name => this.setState({selected: name})
   selectCopy = name => this.setState({copySelect: name})
-  statFolder = name => fs.stat(blenderFolder, (err, stats) => err ? err : stats)
 
   removeFolder = folder => {
     vex.dialog.confirm({
@@ -112,7 +115,12 @@ export default class Inner extends Component {
   render() {
     return (
       <Fragment>
-        <Navigator folders={this.state.folders} selected={this.state.selected} selectFolder={this.selectFolder} />
+        <Navigator 
+          folderMissing={this.state.folderMissing}
+          folders={this.state.folders}
+          selected={this.state.selected}
+          selectFolder={this.selectFolder}
+        />
         <ActionList>
           <Actionator 
             copy={this.state.copy}
