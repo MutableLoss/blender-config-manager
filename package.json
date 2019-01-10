@@ -71,6 +71,12 @@
     "files": [
       "build/**/*"
     ],
+    "directories": {
+      "buildResources": "icons"
+    },
+    "extraResources": [
+      "icons/"
+    ],
     "mac": {
       "category": "public.app-category.photography"
     },

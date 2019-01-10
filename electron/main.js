@@ -8,6 +8,13 @@ require('./listeners/actions')
 let mainWindow
 const windows = []
 
+let iconPath = path.resolve((process.env.NODE_ENV && process.env.NODE_ENV === 'development' ? process.cwd() : process.resourcesPath), 'icons')
+
+function setIcon() {
+  if(process.platform === 'linux') {
+    options.icon = path.resolve(iconPath, '/icons/png', '64x64.png')
+  }
+}
 
 function createBrowserWindow(browserWindowOpts) {
   let win = new BrowserWindow(Object.assign({
@@ -18,7 +25,7 @@ function createBrowserWindow(browserWindowOpts) {
     minHeight: 400,
     resizable: true,
     show: false,
-    icon: path.join(__dirname, 'icons/512x512.png')
+    icon: (process.platform === 'win32' ? path.resolve(iconPath, 'win', 'icon.ico') : process.platform === 'linux' ? path.join(iconPath, 'png', '64x64.png') : false)
   }, browserWindowOpts))
 
   windows.push(win)
