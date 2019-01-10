@@ -59,6 +59,8 @@ const Global = createGlobalStyle`
     padding: 0.5 1rem;
   }
 
+  ul::-webkit-scrollbar { width: 0 !important }
+
   .vex-content {
     background: ${vars.folderBackgroundDark} !important;
     color: ${vars.systemOffwhite} !important;
