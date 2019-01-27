@@ -67,10 +67,11 @@ If you want to git rid of a configuration folder,you can remove a settings folde
 In the case of BCM, this is really only useful for getting rid of extra folders when you want to re-enable a folder with settings years old.
 
 
-## Wish List
+## Wish List (Future Feature List)
 
 Even though BCM offers all that is really needed, there are a few extra features that would be nice to have.
 
+- Open Configuration Folder in default File Manager
 - Backup Option (to backup outside the default config folder)
 - Copy Scripts Option (don't overwrite settings)
 - Native FreeBSD Support
