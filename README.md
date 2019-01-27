@@ -29,6 +29,11 @@ OSX [DMG](https://github.com/3DEsprit/blender-config-manager/releases/download/1
 Linux [.AppImage](https://github.com/3DEsprit/blender-config-manager/releases/download/1.0.1/blender-config-manager-1.0.1-x86_64.AppImage)).
 Execute the file, and follow any directions thereafter. 
 
+
+### Notice
+
+The Blender Configuration Manager is used to alter your local Blender configurations and addons. The Maintainer/Creator is not responsible for any data loss. Backup responsibly. 
+
 ## Usage
 
 The most important feature of BCM (Blender Config Manager) is the ability to _remove_, or _disable_ configuration files. To quickly explain how Blender configuration files work, each version of Blender will create its own configuration folder with the name set as the version number. Each one of these folders is usually placed in a folder not usually visited by the common user, and in turn can be hidden for many throughout their Blender career. 
@@ -69,4 +74,3 @@ Even though BCM offers all that is really needed, there are a few extra features
 - Backup Option (to backup outside the default config folder)
 - Copy Scripts Option (don't overwrite settings)
 - Native FreeBSD Support
-
