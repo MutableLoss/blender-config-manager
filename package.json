@@ -29,7 +29,7 @@
     "babel-register": "6.26.0",
     "css-loader": "0.28.11",
     "devtron": "1.4.0",
-    "electron": "2.0.8",
+    "electron": "^3.0.0",
     "electron-builder": "20.19.2",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
     "file-loader": "1.1.11",
@@ -99,7 +99,12 @@
       "icon": "build/icons/",
       "target": [
         "AppImage"
-      ]
+      ],
+      "artifactName": "${productName}-${version}.${ext}",
+      "desktop": {
+        "Name": "Blender Config Manager",
+        "Terminal": false
+      }
     },
     "win": {
       "target": "NSIS",
