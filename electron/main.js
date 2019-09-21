@@ -19,6 +19,9 @@ function setIcon() {
 function createBrowserWindow(browserWindowOpts) {
   let win = new BrowserWindow(Object.assign({
     frame: process.platform === 'darwin' ? false : true,
+    webPreferences: {
+      nodeIntegration: true
+    },
     width: 710,
     height: 500,
     minWidth: 400,
