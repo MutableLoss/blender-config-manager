@@ -17,7 +17,7 @@ const PATHS = {
 }
 
 module.exports = merge.smart(baseConfig, {
-    target: 'electron-renderer',
+    target: 'electron-main',
     entry: PATHS.app,
     output: {
       path: PATHS.build,

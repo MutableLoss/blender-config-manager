@@ -16,8 +16,8 @@ const port = process.env.PORT || 3000;
 const publicPath = `http://localhost:${port}/`;
 
 module.exports = merge.smart(baseConfig, {
-  devtool: 'inline-source-map',
-  target: 'electron-renderer',
+  devtool: 'source-map',
+  target: 'electron-main',
   entry: [
     'index.js',
     'react-hot-loader/patch',
