@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var DashboardPlugin = require('webpack-dashboard/plugin');
 var TerserPlugin = require('terser-webpack-plugin');
 var externals = require('./package.json').dependencies;
 
