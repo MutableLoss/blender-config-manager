@@ -1,3 +1,5 @@
+const fs = require('fs')
+const os = require('os')
 const path = require('path')
 const glob = require('glob')
 var nodeConsole = require('console')
@@ -47,7 +49,10 @@ function createBrowserWindow(browserWindowOpts) {
   if(process.env.HOT) {
     win.openDevTools()
     require('devtron').install()
-    BrowserWindow.addDevToolsExtension('/Users/dbrown/Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.4.3_0/')
+    if(process.platform == 'darwin') {
+      let devtoolsExt = `${os.homedir}/Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/`
+      fs.readdir(devtoolsExt, (err, files) => BrowserWindow.addDevToolsExtension(`${devtoolsExt}${files[files.length - 1]}`))
+    }
   }
   
   win.on('close', () => {
