@@ -25,27 +25,14 @@ module.exports = merge.smart(baseConfig, {
     'webpack/hot/only-dev-server',
     path.join(__dirname, '/app/index.js')
   ],
-
   output: {
     publicPath: `http://localhost:${port}/`
   },
-
   module: {
     rules: [
       {
         test: /\.html$/,
         loader: 'html-loader'
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-            presets: ['es2017', 'react', 'babel-preset-stage-2']
-          }
-        }
       },
       {
         test: /\.css$/,
@@ -60,7 +47,6 @@ module.exports = merge.smart(baseConfig, {
     modules: ['node_modules']
   },
   plugins: [
-
     new webpack.HotModuleReplacementPlugin({
       // @TODO: Waiting on https://github.com/jantimon/html-webpack-plugin/issues/533
       // multiStep: true
@@ -69,7 +55,6 @@ module.exports = merge.smart(baseConfig, {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     }),
-
     new webpack.LoaderOptionsPlugin({
       debug: true
     }),
@@ -87,7 +72,6 @@ module.exports = merge.smart(baseConfig, {
     __dirname: false,
     __filename: false
   },
-
   devServer: {
     port,
     publicPath,
