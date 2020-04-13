@@ -15,7 +15,12 @@ module.exports = {
       use: {
         loader: 'babel-loader',
         options: {
-          cacheDirectory: true
+          cacheDirectory: true,
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+          plugins: [
+            '@babel/transform-runtime',
+            '@babel/proposal-class-properties'
+          ]
         }
       }
     },
