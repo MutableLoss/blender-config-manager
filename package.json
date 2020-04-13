@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-main": "cross-env HOT=1 electron --enable-logging ./electron/main",
-    "start-render": "cross-env NODE_ENV=development node --trace-warnings --max_old_space_size=2096 -r babel-register ./node_modules/webpack-dev-server/bin/webpack-dev-server --config webpack.config.dev.js --progress --color --watch --mode development",
-    "start-render-quiet": "cross-env NODE_ENV=development node --trace-warnings --max_old_space_size=2096 ./node_modules/webpack-dev-server/bin/webpack-dev-server --config webpack.config.dev.js --progress --color --watch --mode development",
+    "start-render": "cross-env NODE_ENV=development node --trace-warnings --max_old_space_size=2096 ./node_modules/webpack-dev-server/bin/webpack-dev-server --config webpack.config.dev.js --progress --color --watch --mode development",
     "bundle-electron": "node ./node_modules/webpack/bin/webpack --config webpack.config.electron.js --progress --profile --colors --mode production",
     "bundle-frontend": "node ./node_modules/webpack/bin/webpack --config webpack.config.prod.js --progress --profile --colors --mode production",
     "bundle-pre": "node ./node_modules/webpack/bin/webpack --config webpack.config.prerelease.js --progress --profile --colors --mode production",
@@ -15,18 +14,21 @@
     "prod": "cross-env NODE_ENV=production electron ./build/main",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "dev": "concurrently --raw --kill-others \"npm run start-render-quiet\" \"npm run start-main\""
+    "dev": "concurrently --raw --kill-others \"npm run start-render\" \"npm run start-main\""
   },
   "author": "Dennis Brown <npm@dvs.com.co> (https://networksynapse.net/)",
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "6.26.3",
-    "babel-eslint": "^10.0.2",
-    "babel-loader": "^8.0.6",
-    "babel-preset-es2017": "6.24.1",
-    "babel-preset-react": "6.24.1",
-    "babel-preset-stage-2": "6.24.1",
-    "babel-register": "6.26.0",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/register": "^7.9.0",
+    "@babel/runtime": "^7.9.2",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
     "css-loader": "^3.0.0",
     "devtron": "^1.4.0",
     "electron": "^7.2.4",
@@ -52,13 +54,13 @@
   "dependencies": {
     "@material-ui/core": "^4.2.0",
     "chalk": "2.4.1",
-    "concurrently": "^4.1.1",
+    "concurrently": "^5.1.0",
     "cross-env": "^5.2.0",
     "folktale": "^2.3.1",
     "node-fs-extra": "0.8.2",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.5",
     "styled-components": "^4.3.2",
     "vex-js": "4.1.0"
@@ -66,7 +68,7 @@
   "build": {
     "appId": "com.electron.blender-config-manager",
     "productName": "Blender Config Manager",
-    "copyright": "Copyright 2018 Dennis Brown",
+    "copyright": "Copyright 2020 Dennis Brown",
     "files": [
       "build/**/*"
     ],
