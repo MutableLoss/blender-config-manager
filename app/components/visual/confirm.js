@@ -1,15 +1,15 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ContainedButton from './ContainedButton'
 
 const Confirm = ({ copy, copySelect, copyFolder }) => (
-  <Fragment>
+  <>
     {copySelect && copy ?
       <ContainedButton title="copy selected settings folder" name="Copy" action={copyFolder} />
     :
       null
     }
-  </Fragment>
+  </>
 )
 
 Confirm.propTypes = {
