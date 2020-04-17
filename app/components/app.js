@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-import blue from '@material-ui/core/colors/blue'
+// import blue from '@material-ui/core/colors/blue'
 
 import * as vars from '../style/variables'
 
@@ -26,6 +26,9 @@ const theme = createMuiTheme({
 })
 
 export default class App extends Component {
+  shouldComponentUpdate() {
+    return true
+  }
 
   renderApp = () => (
     <AppContainer>
@@ -40,12 +43,10 @@ export default class App extends Component {
 
   render() {
     return (
-      <Fragment>
-        <MuiThemeProvider theme={theme}>
-          {this.renderApp()}
-          <Global />
-        </MuiThemeProvider>
-      </Fragment>
+      <MuiThemeProvider theme={theme}>
+        {this.renderApp()}
+        <Global />
+      </MuiThemeProvider>
     )
   }
 }
