@@ -22,21 +22,23 @@
   "rules": {
     "no-console": 0,
     "new-cap": 0,
-    "no-underscore-dangle": 0,
+    "no-underscore-dangle": 1,
     "no-use-before-define": 0,
-    "no-unused-vars": 0,
+    "no-unused-vars": [2, {"argsIgnorePattern": "^_", "varsIgnorePattern": "^_"}],
     "no-undef": 0,
     "eol-last": 2,
     "quotes": [2, "single"],
     "jsx-quotes": 1,
+    "react/jsx-fragments": 0,
+    "react/jsx-props-no-spreading": 0,
     "react/jsx-indent": [2, 2],
     "react/jsx-indent-props": [2, "first"],
     "react/jsx-closing-bracket-location": [0, "after-props"],
     "react/jsx-boolean-value": [0, "always"],
     "react/jsx-one-expression-per-line": [2, {"allow": "single-child"}],
     "react/jsx-curly-spacing": [2, {"when": "never"}],
-    "react/no-unused-prop-types": 1,
-    "react/forbid-component-props": 0,
+    "react/no-unused-prop-types": ["error", { "customValidators": [] }],
+    "react/forbid-component-props": ["error", { "forbid": ["className", "style"] }],
     "react/prop-types": 1,
     "react/jsx-filename-extension": 0,
     "react/no-multi-comp": [1, { "ignoreStateless": true }],
@@ -47,13 +49,22 @@
       "allowFunctions": false,
       "allowBind": false
     }],
-    "react/jsx-no-literals": 0,
+    "react/boolean-prop-naming": ["error", { "propTypeNames": ["bool", "mutuallyExclusiveTrueProps"], "rule": "^is[A-Z]([A-Za-z0-9]?)+" }],
+    "react/function-component-definition": [0, {
+      "namedComponents": "arrow-function",
+      "unnamedComponents": "arrow-function"
+    }],
+    "react/jsx-no-literals": [0, {"noStrings": true}],
     "react/no-array-index-key": 0,
+    "react/jsx-max-depth": 2,
+    "react/jsx-sort-props": 0,
+    "react/jsx-closing-tag-location": 0,
     "react/require-default-props": [1, { "forbidDefaultForRequired": true }],
     "react/jsx-max-props-per-line": [1, { "when": "multiline" }],
     "react/forbid-prop-types": [1, { "forbid": ["array"]}],
-    "semicolon": ["warning", "never"],
-    "comma-dangle": ["error", "never", {
+    "react/static-property-placement": 0,
+    "semicolon": [0, "never"],
+    "comma-dangle": [2, "never", {
       "max": 1,
       "maxEOF": 1,
       "maxBOF": 1
@@ -62,12 +73,12 @@
       "skipBlankLines": false,
       "ignoreComments": false
     }],
-    "sort-keys": ["error", "asc", {
+    "sort-keys": [0, "asc", {
       "caseSensitive": true,
       "natural": false
     }],
     "arrow-parens": ["error", "as-needed"],
-    "max-line-length": false,
+    "max-line-length": 0,
     "max-lines-per-function": [1, 300],
     "sort-imports": 0,
     "max-classes-per-file": 1
