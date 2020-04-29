@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import styled, { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-// import blue from '@material-ui/core/colors/blue'
+import Main from './main'
 
 import * as vars from '../style/variables'
-
-import Inner from './inner'
 
 const theme = createMuiTheme({
   palette: {
@@ -30,21 +28,10 @@ export default class App extends Component {
     return true
   }
 
-  renderApp = () => (
-    <AppContainer>
-      {process.platform === 'darwin' ?
-      <TitleBar>Blender Config Manager</TitleBar>
-      : null}
-      <InnerContainer>
-        <Inner />
-      </InnerContainer>
-    </AppContainer>
-  )
-
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        {this.renderApp()}
+        <Main />
         <Global />
       </MuiThemeProvider>
     )
@@ -87,31 +74,3 @@ const Global = createGlobalStyle`
   }
 `
 
-const AppContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-content: stretch;
-  align-items: stretch;
-  background-color: ${vars.folderBackgroundDarker};
-  height: 100%;
-`
-
-const TitleBar = styled.div `
-  -webkit-app-region: drag;
-  text-align: center;
-  padding: 15px 0;
-  font-size: 1.5rem;
-  width: 100%;
-  color: ${vars.blueLight};
-  font-size: $font-base * 2;
-`
-
-const InnerContainer = styled.div `
-  display: flex;
-  justify-content: flex-start;
-  align-content: stretch;
-  align-items: stretch;
-  height: 100%;
-  margin: 24px 0;
-`
