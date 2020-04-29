@@ -1,33 +1,33 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import FolderList from './visual/folderList'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 
 // import Folder from './visual/folder'
 
-export default class Navigator extends Component {
-  constructor(props) {
-    super(props)
-  }
+const Navigator = props => {
+  const useStyles = makeStyles({
+    navigation: {
+      display: 'flex',
+      flex: '1 0 45%',
+      flexDirection: 'column',
+      justifyContent: 'stretch'
+    }
+  })
 
-  render() {
-    return (
-      <NavigationContainer>
-        <FolderList {...this.props} />
-      </NavigationContainer>
-    )
-  }
+  const classes = useStyles()
+
+  return (
+    <div className={classes.navigation}>
+      <FolderList {...props} />
+    </div>
+  )
 }
-
-const NavigationContainer = styled.div`
-  display: flex;
-  flex: 1 0 45%;
-  flex-direction: column;
-  justify-content: stretch;
-`
 
 Navigator.propTypes = {
-  folders: PropTypes.array.isRequired,
-  selected: PropTypes.string.isRequired,
-  selectFolder: PropTypes.func.isRequired
+  folders: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectFolder: PropTypes.func.isRequired,
+  selected: PropTypes.string.isRequired
 }
+
+export default Navigator
