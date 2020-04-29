@@ -29,7 +29,7 @@ const Actionator = props => {
     <div className={classes.action}>
       {copy ?
         <FolderList folders={folders.filter(obj => obj !== selected)} selectFolder={selectCopy} selected={copySelect} cancel={resetSelected}>
-          <Confirm copy={copy} copySelect={copySelect} copyFolder={copyFolder} />
+          <Confirm {...props} />
         </FolderList>
       : children}
     </div>
@@ -37,6 +37,7 @@ const Actionator = props => {
 }
 
 Actionator.propTypes = {
+  children: PropTypes.node.isRequired,
   copy: PropTypes.bool.isRequired,
   copySelect: PropTypes.string.isRequired,
   folders: PropTypes.arrayOf(PropTypes.string).isRequired,
