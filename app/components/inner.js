@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { ipcRenderer } from 'electron'
-import styled from 'styled-components'
 import fs from 'fs'
 import os from 'os'
 
@@ -9,21 +8,17 @@ vex.registerPlugin(require('vex-dialog'))
 vex.defaultOptions.className = 'vex-theme-flat-attack'
 
 import Navigator from './navigator'
-import Actionator from './actionator'
-
-import Actions from './visual/actions'
-import Confirm from './visual/confirm'
-import FolderList from './visual/folderList'
+import ControlContainer from './controlContainer'
 
 let blenderSource
 
 let platform = process.platform
 switch(platform) {
   case 'darwin':
-    blenderSource = os.homedir() + '/Library/Application\ Support/'
+    blenderSource = os.homedir() + '/Library/Application Support/'
     break
   case 'win32':
-    blenderSource = os.homedir() + '\\AppData\\Roaming\\Blender\ Foundation\\'
+    blenderSource = os.homedir() + '\\AppData\\Roaming\\Blender Foundation\\'
     break
   case 'linux':
     blenderSource = os.homedir() + '/.config/'
@@ -58,10 +53,6 @@ export default class Inner extends Component {
     this.setState({interval: interval})
   }
 
-  shouldComponentUpdate(prevProps, prevState) {
-    return true
-  }
-
   componentDidMount() {
     ipcRenderer.on('show-folders-response', (event, folders) => this.setState({ folders: folders }))
     ipcRenderer.on('remove-folder-response', event => this.responseRefresh())
@@ -70,13 +61,17 @@ export default class Inner extends Component {
     ipcRenderer.on('copy-settings-response', event => this.responseRefresh())
   }
 
+  shouldComponentUpdate() {
+    return true
+  }
+
   componentWillUnmount() {
     clearInterval(this.state.interval)
 
     ipcRenderer.removeListener('show-folders-response', (event, folders) => this.setState({ folders: folders }))
-    ipcRenderer.removeListener('remove-folder-response', (event) => this.responseRefresh())
-    ipcRenderer.removeListener('disable-folder-response', (event) => this.responseRefresh())
-    ipcRenderer.removeListener('enable-folder-response', (event) => this.responseRefresh())
+    ipcRenderer.removeListener('remove-folder-response', _event => this.responseRefresh())
+    ipcRenderer.removeListener('disable-folder-response', _event => this.responseRefresh())
+    ipcRenderer.removeListener('enable-folder-response', _event => this.responseRefresh())
   }
 
   responseRefresh = () => {
@@ -86,7 +81,7 @@ export default class Inner extends Component {
 
   resetSelected = () => this.setState({selected: '', copy: false, copySelect: ''})
   showFolders = () => ipcRenderer.send('show-folders', blenderFolder)
-  copyPrompt = selected => this.setState({copy: true})
+  copyPrompt = () => this.setState({copy: true})
   disableFolder = name => ipcRenderer.send('disable-folder', blenderFolder, name)
   enableFolder = name => ipcRenderer.send('enable-folder', blenderFolder, name)
   selectFolder = name => this.setState({selected: name})
@@ -107,48 +102,32 @@ export default class Inner extends Component {
     vex.dialog.confirm({
       message: `Replacing settings in ${this.state.copySelect} with the settings from ${this.state.selected}. Continue?`,
       callback: value =>
-        value ? ipcRender.send('copy-settings', blenderFolder, this.state.selected, this.state.copySelect)
+        value ? ipcRenderer.send('copy-settings', blenderFolder, this.state.selected, this.state.copySelect)
           : this.resetSelected()
     })
   }
 
   render() {
     return (
-      <Fragment>
-        <Navigator 
+      <>
+        <Navigator
           folderMissing={this.state.folderMissing}
           folders={this.state.folders}
           selected={this.state.selected}
           selectFolder={this.selectFolder}
         />
-        <ActionList>
-          <Actionator 
-            copy={this.state.copy}
-            copyFolder={this.copyFolder}
-            copySelect={this.state.copySelect}
-            folders={this.state.folders}
-            resetSelected={this.resetSelected}
-            selectCopy={this.selectCopy}
-            selected={this.state.selected}>
-            <Actions
-              selected={this.state.selected}
-              folders={this.state.folders}
-              enable={this.enableFolder}
-              disable={this.disableFolder}
-              remove={this.removeFolder}
-              copy={this.copyPrompt}
-            />
-          </Actionator>
-        </ActionList>
-      </Fragment>
+        <ControlContainer
+          copyFolder={this.copyFolder}
+          copyPrompt={this.copyPrompt}
+          disableFolder={this.disableFolder}
+          enableFolder={this.enableFolder}
+          removeFolder={this.removeFolder}
+          resetSelected={this.resetSelected}
+          selectCopy={this.selectCopy}
+          {...this.state}
+        />
+      </>
     )
   }
 }
 
-const ActionList = styled.div`
-  display: flex;
-  flex: 1 0 45%;
-  flex-direction: column;
-  justify-content: stretch;
-  align-items: flex-start;
-`
