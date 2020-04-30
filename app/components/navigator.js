@@ -24,7 +24,12 @@ const Navigator = props => {
   )
 }
 
+Navigator.defaultProps = {
+  folderMissing: false
+}
+
 Navigator.propTypes = {
+  folderMissing: PropTypes.bool,
   folders: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectFolder: PropTypes.func.isRequired,
   selected: PropTypes.string.isRequired

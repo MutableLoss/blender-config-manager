@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { ipcRenderer } from 'electron'
 import fs from 'fs'
 import os from 'os'
@@ -33,11 +33,14 @@ export default class Base extends Component {
     super(props)
 
     this.state = {
+      // eslint-disable-next-line react/no-unused-state
       folderMissing: false,
+      // eslint-disable-next-line react/no-unused-state
       folders: [],
       interval: undefined,
       selected: '',
       copySelect: '',
+      // eslint-disable-next-line react/no-unused-state
       copy: false
     }
   }
@@ -45,13 +48,15 @@ export default class Base extends Component {
   componentWillMount() {
     let interval = setInterval(() => fs.stat(blenderFolder, (err, stats) => {
       if(stats) { this.showFolders() }
+      // eslint-disable-next-line react/no-unused-state
       stats ?  this.setState({ folderMissing: false }) : this.setState({ folderMissing: true })
     }), 2000)
     this.setState({interval: interval})
   }
 
   componentDidMount() {
-    ipcRenderer.on('show-folders-response', (event, folders) => this.setState({ folders: folders }))
+    // eslint-disable-next-line react/no-unused-state
+    ipcRenderer.on('show-folders-response', (event, folders) => this.setState({ folders }))
     ipcRenderer.on('remove-folder-response', _event => this.responseRefresh())
     ipcRenderer.on('disable-folder-response', _event => this.responseRefresh())
     ipcRenderer.on('enable-folder-response', _event => this.responseRefresh())
@@ -63,9 +68,12 @@ export default class Base extends Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.interval)
+    const { interval } = this.state
 
-    ipcRenderer.removeListener('show-folders-response', (event, folders) => this.setState({ folders: folders }))
+    clearInterval(interval)
+
+    // eslint-disable-next-line react/no-unused-state
+    ipcRenderer.removeListener('show-folders-response', (event, folders) => this.setState({ folders }))
     ipcRenderer.removeListener('remove-folder-response', _event => this.responseRefresh())
     ipcRenderer.removeListener('disable-folder-response', _event => this.responseRefresh())
     ipcRenderer.removeListener('enable-folder-response', _event => this.responseRefresh())
@@ -77,13 +85,15 @@ export default class Base extends Component {
     this.showFolders()
   }
 
+  // eslint-disable-next-line react/no-unused-state
   resetSelected = () => this.setState({selected: '', copy: false, copySelect: ''})
-  showFolders = () => ipcRenderer.send('show-folders', blenderFolder)
+  // eslint-disable-next-line react/no-unused-state
   copyPrompt = () => this.setState({copy: true})
+  showFolders = () => ipcRenderer.send('show-folders', blenderFolder)
   disableFolder = name => ipcRenderer.send('disable-folder', blenderFolder, name)
   enableFolder = name => ipcRenderer.send('enable-folder', blenderFolder, name)
-  selectFolder = name => this.setState({selected: name})
-  selectCopy = name => this.setState({copySelect: name})
+  selectFolder = selected => this.setState({ selected })
+  selectCopy = copySelect => this.setState({ copySelect })
 
   removeFolder = folder => {
     vex.dialog.confirm({
@@ -97,10 +107,11 @@ export default class Base extends Component {
   }
 
   copyFolder = () => {
+    const { copySelect, selected } = this.state
     vex.dialog.confirm({
-      message: `Replacing settings in ${this.state.copySelect} with the settings from ${this.state.selected}. Continue?`,
+      message: `Replacing settings in ${copySelect} with the settings from ${selected}. Continue?`,
       callback: value =>
-        value ? ipcRenderer.send('copy-settings', blenderFolder, this.state.selected, this.state.copySelect)
+        value ? ipcRenderer.send('copy-settings', blenderFolder, selected, copySelect)
           : this.resetSelected()
     })
   }

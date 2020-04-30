@@ -75,10 +75,16 @@ const FolderList = props => {
 
 export default FolderList
 
+FolderList.defaultProps = {
+  cancel: false,
+  children: null,
+  selected: ''
+}
+
 FolderList.propTypes = {
+  cancel: PropTypes.bool,
   children: PropTypes.node,
   folders: PropTypes.arrayOf(PropTypes.string).isRequired,
-  select: PropTypes.func,
-  selected: PropTypes.string,
-  cancel: PropTypes.func
+  selectFolder: PropTypes.func.isRequired,
+  selected: PropTypes.string
 }

@@ -10,9 +10,9 @@ const Confirm = ({ copy, copySelect, copyFolder }) => (
 )
 
 Confirm.propTypes = {
+  copy: PropTypes.bool.isRequired,
   copyFolder: PropTypes.func.isRequired,
-  copySelect: PropTypes.string.isRequired,
-  copy: PropTypes.bool.isRequired
+  copySelect: PropTypes.string.isRequired
 }
 
 export default Confirm
