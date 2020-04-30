@@ -78,12 +78,14 @@ export default FolderList
 FolderList.defaultProps = {
   cancel: false,
   children: null,
+  folderMissing: false,
   selected: ''
 }
 
 FolderList.propTypes = {
   cancel: PropTypes.bool,
   children: PropTypes.node,
+  folderMissing: PropTypes.bool,
   folders: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectFolder: PropTypes.func.isRequired,
   selected: PropTypes.string
