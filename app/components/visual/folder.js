@@ -9,7 +9,7 @@ const Folder = ({ name, select, selected }) => {
   const useStyles = makeStyles({
     folder: {
       margin: 'padding-sm 0',
-      color: vars.offWhite,
+      color: vars.offWhite
     },
     selected: {
       background: vars.blueDark
