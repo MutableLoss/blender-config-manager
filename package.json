@@ -109,8 +109,14 @@
       }
     },
     "win": {
-      "target": "NSIS",
+      "target": "portable",
       "icon": "icons/win/icon.ico"
+    },
+    "nsis": {
+      "artifactName": "${productName}-${version}_Win-Setup.${ext}"
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}_Win-Portable.${ext}"
     }
   }
 }
