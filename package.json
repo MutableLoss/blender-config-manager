@@ -64,7 +64,6 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.5",
-    "styled-components": "^4.3.2",
     "vex-js": "4.1.0"
   },
   "build": {
