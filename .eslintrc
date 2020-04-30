@@ -49,11 +49,12 @@
       "allowFunctions": false,
       "allowBind": false
     }],
-    "react/boolean-prop-naming": ["error", { "propTypeNames": ["bool", "mutuallyExclusiveTrueProps"], "rule": "^is[A-Z]([A-Za-z0-9]?)+" }],
+    "react/boolean-prop-naming": [1, { "propTypeNames": ["bool", "mutuallyExclusiveTrueProps"], "rule": "^is[A-Z]([A-Za-z0-9]?)+" }],
     "react/function-component-definition": [0, {
       "namedComponents": "arrow-function",
       "unnamedComponents": "arrow-function"
     }],
+    "react/no-set-state": 1,
     "react/jsx-no-literals": [0, {"noStrings": true}],
     "react/no-array-index-key": 0,
     "react/jsx-max-depth": 2,
