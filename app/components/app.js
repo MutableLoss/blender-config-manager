@@ -4,6 +4,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Main from './main'
 
 import * as vars from '../style/variables'
+import ErrorBoundary from './errorBoundary'
 
 const theme = createMuiTheme({
   palette: {
@@ -65,8 +66,10 @@ export default class App extends Component {
 
     return (
       <MuiThemeProvider theme={theme}>
-        <GlobalCss />
-        <Main />
+        <ErrorBoundary>
+          <GlobalCss />
+          <Main />
+        </ErrorBoundary>
       </MuiThemeProvider>
     )
   }
