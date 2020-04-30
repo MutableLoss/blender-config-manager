@@ -1,15 +1,11 @@
 /* eslint-disable max-len */
 
 var path = require('path');
-var fs = require('fs');
 var webpack = require('webpack');
-var chalk = require('chalk');
 var merge = require('webpack-merge');
 var spawn = require('child_process').spawn;
-var execSync = require('child_process').execSync;
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var baseConfig = require('./webpack.config.base');
-var CheckNodeEnv = require('./scripts/check_node_env');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const port = process.env.PORT || 3000;
@@ -66,7 +62,7 @@ module.exports = merge.smart(baseConfig, {
     }),
     new ExtractTextPlugin({
       filename: '[name].css'
-    }),
+    })
   ],
   node: {
     __dirname: false,
@@ -88,7 +84,7 @@ module.exports = merge.smart(baseConfig, {
     },
     historyApiFallback: {
       verbose: true,
-      disableDotRule: false,
+      disableDotRule: false
     },
     before() {
       if (process.env.START_HOT) {
@@ -102,5 +98,5 @@ module.exports = merge.smart(baseConfig, {
         .on('error', spawnError => console.error(spawnError));
       }
     }
-  },
-});
+  }
+})
