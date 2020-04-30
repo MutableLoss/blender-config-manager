@@ -1,10 +1,9 @@
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
-const glob = require('glob')
-var nodeConsole = require('console')
-var myConsole = new nodeConsole.Console(process.stdout, process.stderr);
-const { app, BrowserView, Menu, ipcMain, BrowserWindow, session, webContents, webFrame } = require('electron')
+// var nodeConsole = require('console')
+// var myConsole = new nodeConsole.Console(process.stdout, process.stderr);
+const { app, BrowserWindow } = require('electron')
 const { setMainMenu } = require('./menu')
 require('./listeners/actions')
 let mainWindow
@@ -43,9 +42,10 @@ function createBrowserWindow(browserWindowOpts) {
 
   win.on('ready-to-show', () => {
     win.show()
+    setIcon()
   })
   setMainMenu(mainWindow)
-  
+
   if(process.env.HOT) {
     win.openDevTools()
     require('devtron').install()
@@ -54,7 +54,7 @@ function createBrowserWindow(browserWindowOpts) {
       fs.readdir(devtoolsExt, (err, files) => BrowserWindow.addDevToolsExtension(`${devtoolsExt}${files[files.length - 1]}`))
     }
   }
-  
+
   win.on('close', () => {
     windows.splice(windows.indexOf(win), 1)
   });

@@ -1,11 +1,6 @@
-const { ipcMain, dialog } = require('electron')
-const { exec } = require('child_process')
+const { ipcMain } = require('electron')
 const fs = require('fs')
 const fse = require('fs-extra')
-const os = require('os')
-
-const windowCache = {}
-const dockNotificationCache = {}
 
 // show folders in blender config folder
 ipcMain.on('show-folders', (event, blenderFolder) =>

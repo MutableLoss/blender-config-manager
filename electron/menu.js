@@ -1,4 +1,4 @@
-const { app, Menu, ipcMain } = require('electron');
+const { app, Menu } = require('electron');
 const isWindows = process.platform == 'win32';
 const { version } = require('../package.json')
 
@@ -6,7 +6,7 @@ module.exports = {
   setMainMenu
 }
 
-function setMainMenu(mainWindow) {
+function setMainMenu(_mainWindow) {
   const template = [
     {
       label: isWindows ? 'File' : 'Blender Config Manager',
