@@ -8,7 +8,7 @@ import * as vars from '../../style/variables'
 
 const FolderList = props => {
   const {
-    cancel,
+    cancelAction,
     children,
     isFolderMissing,
     folders,
@@ -63,7 +63,7 @@ const FolderList = props => {
             ))}
           </div>}
       </div>
-      {cancel ?
+      {cancelAction ?
         <div className={classes.button}>
           {children}
           <ContainedButton title="cancel" color="secondary" action={() => cancel()} name="Cancel" />
@@ -76,14 +76,14 @@ const FolderList = props => {
 export default FolderList
 
 FolderList.defaultProps = {
-  cancel: false,
+  cancelAction: null,
   children: null,
   isFolderMissing: false,
   selected: ''
 }
 
 FolderList.propTypes = {
-  cancel: PropTypes.bool,
+  cancelAction: PropTypes.func,
   children: PropTypes.node,
   folders: PropTypes.arrayOf(PropTypes.string).isRequired,
   isFolderMissing: PropTypes.bool,
