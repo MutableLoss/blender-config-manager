@@ -14,9 +14,8 @@ ipcMain.on('copy-settings', (event, blenderFolder, from, to) =>
 
 // remove a blender config folder
 ipcMain.on('remove-folder', (event, blenderFolder, folder) =>
-  console.log('delete'))
-    // fs.rmdir(folder, err =>
-      // err ? err : event.sender.send('remove-folder-response')))
+    fs.rmdir(folder, err =>
+      err ? err : event.sender.send('remove-folder-response')))
 
 // disable a blender config folder by renaming to name.old
 ipcMain.on('disable-folder', (event, blenderFolder, folder) =>
