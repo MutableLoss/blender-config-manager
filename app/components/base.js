@@ -41,7 +41,7 @@ export default class Base extends Component {
       selected: '',
       copySelect: '',
       // eslint-disable-next-line react/no-unused-state
-      copy: false
+      isCopying: false
     }
   }
 
@@ -86,9 +86,9 @@ export default class Base extends Component {
   }
 
   // eslint-disable-next-line react/no-unused-state
-  resetSelected = () => this.setState({selected: '', copy: false, copySelect: ''})
+  resetSelected = () => this.setState({selected: '', isCopying: false, copySelect: ''})
   // eslint-disable-next-line react/no-unused-state
-  copyPrompt = () => this.setState({copy: true})
+  copyPrompt = () => this.setState({isCopying: true})
   showFolders = () => ipcRenderer.send('show-folders', blenderFolder)
   disableFolder = name => ipcRenderer.send('disable-folder', blenderFolder, name)
   enableFolder = name => ipcRenderer.send('enable-folder', blenderFolder, name)

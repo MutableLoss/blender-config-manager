@@ -6,7 +6,7 @@ import Actionator from './actionator'
 import Actions from './visual/actions'
 
 const ControlContainer = props => {
-  const { copy, copyFolder, copyPrompt, copySelect, disableFolder, enableFolder, folders, removeFolder, resetSelected, selectCopy, selected } = props
+  const { copyFolder, copyPrompt, copySelect, disableFolder, enableFolder, folders, isCopying, removeFolder, resetSelected, selectCopy, selected } = props
 
   // const [isCopy, setIsCopy] = useState(false)
 
@@ -25,10 +25,10 @@ const ControlContainer = props => {
   return (
     <div className={classes.action}>
       <Actionator
-        copy={copy}
         copyFolder={copyFolder}
         copySelect={copySelect}
         folders={folders}
+        isCopying={isCopying}
         resetSelected={resetSelected}
         selectCopy={selectCopy}
         selected={selected}>
@@ -46,19 +46,19 @@ const ControlContainer = props => {
 }
 
 ControlContainer.defaultProps = {
-  copy: false,
   copySelect: '',
+  isCopying: false,
   selected: ''
 }
 
 ControlContainer.propTypes = {
-  copy: PropTypes.bool,
   copyFolder: PropTypes.func.isRequired,
   copyPrompt: PropTypes.func.isRequired,
   copySelect: PropTypes.string,
   disableFolder: PropTypes.func.isRequired,
   enableFolder: PropTypes.func.isRequired,
   folders: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isCopying: PropTypes.bool,
   removeFolder: PropTypes.func.isRequired,
   resetSelected: PropTypes.func.isRequired,
   selectCopy: PropTypes.func.isRequired,

@@ -21,13 +21,13 @@ const Actionator = props => {
     }
   })
 
-  const { children, copy, copySelect, folders, resetSelected, selectCopy, selected } = props
+  const { children, copySelect, folders, isCopying, resetSelected, selectCopy, selected } = props
 
   const classes = useStyles()
 
   return (
     <div className={classes.action}>
-      {copy ?
+      {isCopying ?
         <FolderList folders={folders.filter(obj => obj !== selected)} selectFolder={selectCopy} selected={copySelect} cancel={resetSelected}>
           <Confirm {...props} />
         </FolderList>
@@ -38,9 +38,9 @@ const Actionator = props => {
 
 Actionator.propTypes = {
   children: PropTypes.node.isRequired,
-  copy: PropTypes.bool.isRequired,
   copySelect: PropTypes.string.isRequired,
   folders: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isCopying: PropTypes.bool.isRequired,
   resetSelected: PropTypes.func.isRequired,
   selectCopy: PropTypes.func.isRequired,
   selected: PropTypes.string.isRequired
