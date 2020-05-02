@@ -7,11 +7,11 @@ import * as vars from '../../style/variables'
 
 const Actions = props => {
   const {
-    copy,
-    disable,
-    enable,
+    copyPrompt,
+    disableAction,
+    enableAction,
     folders,
-    remove,
+    removeAction,
     selected
   } = props
 
@@ -33,15 +33,15 @@ const Actions = props => {
     <div className={classes.container}>
       {selected.match(/^\d{1}\.\d{2}/) ?
         <>
-          <ContainedButton title="copy selected settings folder" name="Copy Settings" action={() => copy(selected)} />
+          <ContainedButton title="copy selected settings folder" name="Copy Settings" action={() => copyPrompt(selected)} />
           {selected.match(/-old/) === null ?
             folders.indexOf(`${selected}-old`) === -1 ?
-              <ContainedButton title="disable settings folder" name="Disable" action={() => disable(selected)} />
+              <ContainedButton title="disable settings folder" name="Disable" action={() => disableAction(selected)} />
             :
               <div className={classes.message}>Only one Disabled Folder per Version</div>
           :
-              <ContainedButton title="enable settings folder" name="Enable" action={() => enable(selected)} />}
-          <ContainedButton title="remove the selected settings folder" name="Remove" action={() => remove(selected)} />
+              <ContainedButton title="enable settings folder" name="Enable" action={() => enableAction(selected)} />}
+          <ContainedButton title="remove the selected settings folder" name="Remove" action={() => removeAction(selected)} />
         </>
       : <div className={classes.message}>Select Folder</div>}
     </div>
@@ -49,11 +49,11 @@ const Actions = props => {
 }
 
 Actions.propTypes = {
-  copy: PropTypes.func.isRequired,
-  disable: PropTypes.func.isRequired,
-  enable: PropTypes.func.isRequired,
+  copyPrompt: PropTypes.func.isRequired,
+  disableAction: PropTypes.func.isRequired,
+  enableAction: PropTypes.func.isRequired,
   folders: PropTypes.arrayOf(PropTypes.string).isRequired,
-  remove: PropTypes.func.isRequired,
+  removeAction: PropTypes.func.isRequired,
   selected: PropTypes.string.isRequired
 }
 

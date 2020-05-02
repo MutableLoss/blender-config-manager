@@ -33,12 +33,12 @@ const ControlContainer = props => {
         selectCopy={selectCopy}
         selected={selected}>
         <Actions
-          selected={selected}
+          copyPrompt={copyPrompt}
+          disableAction={disableFolder}
+          enableAction={enableFolder}
           folders={folders}
-          enable={enableFolder}
-          disable={disableFolder}
-          remove={removeFolder}
-          copy={copyPrompt}
+          removeAction={removeFolder}
+          selected={selected}
         />
       </Actionator>
     </div>
