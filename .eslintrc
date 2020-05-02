@@ -54,7 +54,7 @@
       "namedComponents": "arrow-function",
       "unnamedComponents": "arrow-function"
     }],
-    "react/no-set-state": 1,
+    "react/no-set-state": 0,
     "react/jsx-no-literals": [0, {"noStrings": true}],
     "react/no-array-index-key": 0,
     "react/jsx-max-depth": 2,
