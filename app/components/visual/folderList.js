@@ -10,7 +10,7 @@ const FolderList = props => {
   const {
     cancel,
     children,
-    folderMissing,
+    isFolderMissing,
     folders,
     selectFolder,
     selected
@@ -50,7 +50,7 @@ const FolderList = props => {
   return (
     <>
       <div className={classes.folder}>
-        {folderMissing ?
+        {isFolderMissing ?
           <ul className={classes.list}>
             <div className={classes.message}>Blender Data Missing</div>
           </ul>
@@ -78,15 +78,15 @@ export default FolderList
 FolderList.defaultProps = {
   cancel: false,
   children: null,
-  folderMissing: false,
+  isFolderMissing: false,
   selected: ''
 }
 
 FolderList.propTypes = {
   cancel: PropTypes.bool,
   children: PropTypes.node,
-  folderMissing: PropTypes.bool,
   folders: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isFolderMissing: PropTypes.bool,
   selectFolder: PropTypes.func.isRequired,
   selected: PropTypes.string
 }

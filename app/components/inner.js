@@ -12,7 +12,7 @@ export default class Inner extends Base {
     return (
       <>
         <Navigator
-          folderMissing={this.state.folderMissing}
+          isFolderMissing={this.state.isFolderMissing}
           folders={this.state.folders}
           selected={this.state.selected}
           selectFolder={this.selectFolder}

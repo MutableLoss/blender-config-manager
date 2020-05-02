@@ -34,7 +34,7 @@ export default class Base extends Component {
 
     this.state = {
       // eslint-disable-next-line react/no-unused-state
-      folderMissing: false,
+      isFolderMissing: false,
       // eslint-disable-next-line react/no-unused-state
       folders: [],
       interval: undefined,
@@ -49,7 +49,7 @@ export default class Base extends Component {
     let interval = setInterval(() => fs.stat(blenderFolder, (err, stats) => {
       if(stats) { this.showFolders() }
       // eslint-disable-next-line react/no-unused-state
-      stats ?  this.setState({ folderMissing: false }) : this.setState({ folderMissing: true })
+      stats ?  this.setState({ isFolderMissing: false }) : this.setState({ isFolderMissing: true })
     }), 2000)
     this.setState({interval: interval})
   }
