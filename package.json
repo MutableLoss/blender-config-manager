@@ -5,8 +5,8 @@
   "main": "./build/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-main": "cross-env HOT=1 electron --enable-logging ./electron/main",
-    "start-render": "cross-env NODE_ENV=development node --trace-warnings --max_old_space_size=2096 ./node_modules/webpack-dev-server/bin/webpack-dev-server --config webpack.config.dev.js --progress --color --watch --mode development",
+    "start-main": "cross-env NODE_ENV=development HOT=1 electron -r @babel/register --enable-logging ./electron/main --remote-debugging-port=9223",
+    "start-render": "cross-env NODE_ENV=development node --trace-warnings --max_old_space_size=2096 ./node_modules/.bin/webpack-dev-server -d --config webpack.config.dev.js --progress --color --watch --mode development --remote-debugging-port=9223",
     "bundle-electron": "node ./node_modules/webpack/bin/webpack --config webpack.config.electron.js --progress --profile --colors --mode production",
     "bundle-frontend": "node ./node_modules/webpack/bin/webpack --config webpack.config.prod.js --progress --profile --colors --mode production",
     "bundle-pre": "node ./node_modules/webpack/bin/webpack --config webpack.config.prerelease.js --progress --profile --colors --mode production",

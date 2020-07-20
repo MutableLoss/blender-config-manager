@@ -31,6 +31,21 @@ module.exports = merge.smart(baseConfig, {
         loader: 'html-loader'
       },
       {
+        exclude: /node_modules/,
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            presets: ['@babel/preset-env'],
+            plugins: [
+              '@babel/transform-runtime',
+              '@babel/proposal-class-properties'
+            ]
+          }
+        }
+      },
+      {
         test: /\.css$/,
         use: [
           'style-loader',
