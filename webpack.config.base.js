@@ -1,7 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var TerserPlugin = require('terser-webpack-plugin');
-var externals = require('./package.json').dependencies;
 
 module.exports = {
   externals: [
@@ -15,7 +13,11 @@ module.exports = {
       use: {
         loader: 'babel-loader',
         options: {
-          cacheDirectory: true
+          presets: ['@babel/preset-env'],
+          plugins: [
+            '@babel/transform-runtime',
+            '@babel/proposal-class-properties'
+          ]
         }
       }
     },
@@ -25,9 +27,9 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          mimetype: 'application/font-woff',
+          mimetype: 'application/font-woff'
         }
-      },
+      }
     },
     {
       test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
@@ -35,7 +37,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          mimetype: 'application/font-woff',
+          mimetype: 'application/font-woff'
         }
       }
     },
@@ -55,7 +57,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          mimetype: 'image/svg+xml',
+          mimetype: 'image/svg+xml'
         }
       }
     },
@@ -63,48 +65,29 @@ module.exports = {
       test: /\.(ttf|otf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?|(jpg|gif)$/,
       loader: 'file-loader'
     },
-    { 
+    {
       test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/,
-      use: 'url-loader', 
+      use: 'url-loader'
     }]
-  },
-  optimization: {
-    minimizer: [new TerserPlugin({
-      terserOptions: {
-        compress: {},
-        extractComments: true,
-        ie8: false,
-        keep_fnames: false,
-        mangle: true,
-        nameCache: null,
-        output: null,
-        parse: {},
-        toplevel: false,
-        warnings: false
-      }
-    })]
-  },
-  output: {
-    path: path.join(__dirname, 'build'),
-    pathinfo: true,
-    filename: 'bundle.js',
-    libraryTarget: 'commonjs2'
   },
   node: {
     __dirname: true,
     __filename: false
   },
-  resolve: {
-    extensions: ['.js', '.jsx', '.json'],
-    modules: [
-      path.join(__dirname, 'app'),
-      'node_modules',
-    ],
+  output: {
+    filename: 'bundle.js',
+    libraryTarget: 'commonjs2',
+    path: path.join(__dirname, 'build'),
+    pathinfo: true
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
     }),
-    new webpack.NamedModulesPlugin(),
+    new webpack.NamedModulesPlugin()
   ],
+  resolve: {
+    extensions: ['.js', '.jsx', '.json'],
+    modules: [path.join(__dirname, 'app'), 'node_modules']
+  }
 };

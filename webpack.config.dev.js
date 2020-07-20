@@ -1,15 +1,11 @@
 /* eslint-disable max-len */
 
 var path = require('path');
-var fs = require('fs');
 var webpack = require('webpack');
-var chalk = require('chalk');
 var merge = require('webpack-merge');
 var spawn = require('child_process').spawn;
-var execSync = require('child_process').execSync;
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var baseConfig = require('./webpack.config.base');
-var CheckNodeEnv = require('./scripts/check_node_env');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const port = process.env.PORT || 3000;
@@ -25,11 +21,9 @@ module.exports = merge.smart(baseConfig, {
     'webpack/hot/only-dev-server',
     path.join(__dirname, '/app/index.js')
   ],
-
   output: {
     publicPath: `http://localhost:${port}/`
   },
-
   module: {
     rules: [
       {
@@ -37,13 +31,17 @@ module.exports = merge.smart(baseConfig, {
         loader: 'html-loader'
       },
       {
-        test: /\.js$/,
         exclude: /node_modules/,
+        test: /\.js$/,
         use: {
           loader: 'babel-loader',
           options: {
             cacheDirectory: true,
-            presets: ['es2017', 'react', 'babel-preset-stage-2']
+            presets: ['@babel/preset-env'],
+            plugins: [
+              '@babel/transform-runtime',
+              '@babel/proposal-class-properties'
+            ]
           }
         }
       },
@@ -60,7 +58,6 @@ module.exports = merge.smart(baseConfig, {
     modules: ['node_modules']
   },
   plugins: [
-
     new webpack.HotModuleReplacementPlugin({
       // @TODO: Waiting on https://github.com/jantimon/html-webpack-plugin/issues/533
       // multiStep: true
@@ -69,7 +66,6 @@ module.exports = merge.smart(baseConfig, {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     }),
-
     new webpack.LoaderOptionsPlugin({
       debug: true
     }),
@@ -81,13 +77,12 @@ module.exports = merge.smart(baseConfig, {
     }),
     new ExtractTextPlugin({
       filename: '[name].css'
-    }),
+    })
   ],
   node: {
     __dirname: false,
     __filename: false
   },
-
   devServer: {
     port,
     publicPath,
@@ -104,7 +99,7 @@ module.exports = merge.smart(baseConfig, {
     },
     historyApiFallback: {
       verbose: true,
-      disableDotRule: false,
+      disableDotRule: false
     },
     before() {
       if (process.env.START_HOT) {
@@ -118,5 +113,5 @@ module.exports = merge.smart(baseConfig, {
         .on('error', spawnError => console.error(spawnError));
       }
     }
-  },
-});
+  }
+})

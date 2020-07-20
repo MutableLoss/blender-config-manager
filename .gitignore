@@ -1,5 +1,6 @@
 node_modules
 dump.rdb
+yarn-error.log
 
 build/
 dist/

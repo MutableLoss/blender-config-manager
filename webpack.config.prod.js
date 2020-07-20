@@ -1,19 +1,17 @@
 /* eslint-disable max-len */
 
 var path = require('path');
-var fs = require('fs');
 var webpack = require('webpack');
 var merge = require('webpack-merge');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
-var { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 var baseConfig = require('./webpack.config.base');
+var TerserPlugin = require('terser-webpack-plugin');
 // var CheckNodeEnv = require('./scripts/CheckNodeEnv');
 
 const PATHS = {
   app: path.join(__dirname, './app/index.js'),
-  build: path.join(__dirname, '/build/'),
+  build: path.join(__dirname, '/build/')
 }
 
 module.exports = merge.smart(baseConfig, {
@@ -63,6 +61,22 @@ module.exports = merge.smart(baseConfig, {
   },
   resolve: {
     modules: ['node_modules']
+  },
+  optimization: {
+    minimizer: [new TerserPlugin({
+      terserOptions: {
+        compress: {},
+        extractComments: true,
+        ie8: false,
+        keep_fnames: false,
+        mangle: true,
+        nameCache: null,
+        output: null,
+        parse: {},
+        toplevel: false,
+        warnings: false
+      }
+    })]
   },
   plugins: [
     new webpack.DefinePlugin({

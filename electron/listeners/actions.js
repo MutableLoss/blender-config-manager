@@ -1,11 +1,6 @@
-const { ipcMain, dialog } = require('electron')
-const { exec } = require('child_process')
+const { ipcMain } = require('electron')
 const fs = require('fs')
 const fse = require('fs-extra')
-const os = require('os')
-
-const windowCache = {}
-const dockNotificationCache = {}
 
 // show folders in blender config folder
 ipcMain.on('show-folders', (event, blenderFolder) =>
@@ -24,7 +19,7 @@ ipcMain.on('remove-folder', (event, blenderFolder, folder) =>
 
 // disable a blender config folder by renaming to name.old
 ipcMain.on('disable-folder', (event, blenderFolder, folder) =>
-    fs.rename(`${blenderFolder}/${folder}`, `${blenderFolder}/${folder}-old`, err => 
+    fs.rename(`${blenderFolder}/${folder}`, `${blenderFolder}/${folder}-old`, err =>
       err ? err : event.sender.send('disable-folder-response')))
 
 // enable a disabled folder

@@ -1,52 +1,60 @@
-import React, { Component, Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import { makeStyles } from '@material-ui/core/styles'
 
 import ContainedButton from './ContainedButton'
 import * as vars from '../../style/variables'
 
-const Actions = ({selected, folders, copy, enable, disable, remove}) => (
-  <ButtonContainer>
-    {selected.match(/^\d{1}\.\d{2}/) ?
-      <Fragment>
-        <ContainedButton title="copy selected settings folder" name="Copy Settings" action={() => copy(selected)} />
-        {selected.match(/-old/) === null ?
-        <Fragment>
-            {folders.indexOf(`${selected}-old`) === -1 ?
-              <ContainedButton title="disable settings folder" name="Disable" action={() => disable(selected)} />
+const Actions = props => {
+  const {
+    copyPrompt,
+    disableAction,
+    enableAction,
+    folders,
+    removeAction,
+    selected
+  } = props
+
+  const useStyles = makeStyles({
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      margin: 24
+    },
+    message: {
+      color: vars.blue
+    }
+  })
+
+  const classes = useStyles()
+
+  return (
+    <div className={classes.container}>
+      {selected.match(/^\d{1}\.\d{2}/) ?
+        <>
+          <ContainedButton title="copy selected settings folder" name="Copy Settings" action={() => copyPrompt(selected)} />
+          {selected.match(/-old/) === null ?
+            folders.indexOf(`${selected}-old`) === -1 ?
+              <ContainedButton title="disable settings folder" name="Disable" action={() => disableAction(selected)} />
             :
-              <ActionMessage>Only one Disabled Folder per Version</ActionMessage>
-            }
-          </Fragment>
-        :
-          <Fragment>
-            <ContainedButton title="enable settings folder" name="Enable" action={() => enable(selected)} />
-          </Fragment>
-        }
-        <ContainedButton title="remove the selected settings folder" name="Remove" action={() => remove(selected)} />
-      </Fragment>
-    : <ActionMessage>Select Folder</ActionMessage>}
-  </ButtonContainer>
-)
-
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 24px;
-`
-
-const ActionMessage = styled.div`
-  color: ${vars.blue};
-`
+              <div className={classes.message}>Only one Disabled Folder per Version</div>
+          :
+              <ContainedButton title="enable settings folder" name="Enable" action={() => enableAction(selected)} />}
+          <ContainedButton title="remove the selected settings folder" name="Remove" action={() => removeAction(selected)} />
+        </>
+      : <div className={classes.message}>Select Folder</div>}
+    </div>
+  )
+}
 
 Actions.propTypes = {
-  selected: PropTypes.string.isRequired,
-  folders: PropTypes.array,
-  copy: PropTypes.func,
-  enable: PropTypes.func,
-  disable: PropTypes.func,
-  remove: PropTypes.func
+  copyPrompt: PropTypes.func.isRequired,
+  disableAction: PropTypes.func.isRequired,
+  enableAction: PropTypes.func.isRequired,
+  folders: PropTypes.arrayOf(PropTypes.string).isRequired,
+  removeAction: PropTypes.func.isRequired,
+  selected: PropTypes.string.isRequired
 }
 
 export default Actions
