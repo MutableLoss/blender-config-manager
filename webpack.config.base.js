@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   externals: [
@@ -14,8 +13,7 @@ module.exports = {
       use: {
         loader: 'babel-loader',
         options: {
-          cacheDirectory: true,
-          presets: ['@babel/preset-env', '@babel/preset-react'],
+          presets: ['@babel/preset-env'],
           plugins: [
             '@babel/transform-runtime',
             '@babel/proposal-class-properties'
@@ -72,43 +70,24 @@ module.exports = {
       use: 'url-loader'
     }]
   },
-  optimization: {
-    minimizer: [new TerserPlugin({
-      terserOptions: {
-        compress: {},
-        extractComments: true,
-        ie8: false,
-        keep_fnames: false,
-        mangle: true,
-        nameCache: null,
-        output: null,
-        parse: {},
-        toplevel: false,
-        warnings: false
-      }
-    })]
-  },
-  output: {
-    path: path.join(__dirname, 'build'),
-    pathinfo: true,
-    filename: 'bundle.js',
-    libraryTarget: 'commonjs2'
-  },
   node: {
     __dirname: true,
     __filename: false
   },
-  resolve: {
-    extensions: ['.js', '.jsx', '.json'],
-    modules: [
-      path.join(__dirname, 'app'),
-      'node_modules'
-    ]
+  output: {
+    filename: 'bundle.js',
+    libraryTarget: 'commonjs2',
+    path: path.join(__dirname, 'build'),
+    pathinfo: true
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
     }),
     new webpack.NamedModulesPlugin()
-  ]
+  ],
+  resolve: {
+    extensions: ['.js', '.jsx', '.json'],
+    modules: [path.join(__dirname, 'app'), 'node_modules']
+  }
 };
